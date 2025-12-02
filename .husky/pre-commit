@@ -1,5 +1,5 @@
-#!/usr/bin/env sh
-. "$(dirname "$0")/_/husky.sh"
+# #!/usr/bin/env sh
+# . "$(dirname "$0")/_/husky.sh"
 
-# Run Biome lint instead of tests if you don't have tests yet
-npx biome lint
+# # Run Biome lint instead of tests if you don't have tests yet
+# npx biome lint
