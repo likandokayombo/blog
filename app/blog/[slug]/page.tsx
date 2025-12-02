@@ -1,74 +1,70 @@
+
+
 // // app/blog/[slug]/page.tsx
-// import { getPostBySlug } from "@/lib/mdx"
-
-// export default function PostPage({ params }: { params: { slug: string } }) {
-//   const { slug } = params
-//   const { frontmatter, content } = getPostBySlug(slug)
-
-//   // For static rendering convert content to MDX component here (tools vary)
-//   // Example pseudo: const MDXContent = compileMDX(content)
-//   // return <MDXContent components={{ /* custom components */ }} />
-
-//   return (
-//     <article>
-//       <h1>{frontmatter.title}</h1>
-//       <p>{frontmatter.date}</p>
-//       {/* Render MDX content (see chosen runtime/compiler) */}
-//     </article>
-//   )
-// }
-
-
-
-
 // import { getPostSlugs } from "@/lib/mdx";
-// import path from "path";
+
+// interface PostPageProps {
+//   params: { slug: string };
+// }
 
 // export async function generateStaticParams() {
-//   return getPostSlugs().map((slug) => ({ slug: slug }));
+//   return getPostSlugs().map((slug) => ({ slug }));
 // }
 
-// export default async function PostPage({ params }: { params: { slug: string } }) {
+// export default async function PostPage({ params }: PostPageProps) {
+//   if (!params) {
+//     throw new Error("Params not provided!");
+//   }
+
 //   const { slug } = params;
 
-//   // Dynamic import of MDX file
+//   // Dynamic import of MDX
 //   const Post = (await import(`@/content/posts/${slug}.mdx`)).default;
 
-//   return (
-//     <article className="prose max-w-2xl mx-auto py-10">
-//       <Post />
-//     </article>
-//   );
+//   // Render MDX directly
+//   return <Post />;
 // }
 
 
 
 
 
+import type { BlogPageProps } from "@/types/blog";
 
+import fs from "node:fs"; 
+import path from "node:path"; 
+import Prose from "@/components/Prose";
 
-
-// app/blog/[slug]/page.tsx
-import { getPostSlugs } from "@/lib/mdx";
-
-interface PostPageProps {
-  params: { slug: string };
-}
+// Make route static
+export const dynamic = "force-static";
 
 export async function generateStaticParams() {
-  return getPostSlugs().map((slug) => ({ slug }));
+  const postsDir = path.join(process.cwd(), "content/posts");
+
+  const slugs = fs.readdirSync(postsDir)
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => ({
+      slug: file.replace(".mdx", "")
+    }));
+
+  return slugs;
 }
 
-export default async function PostPage({ params }: PostPageProps) {
-  if (!params) {
-    throw new Error("Params not provided!");
-  }
+export default async function PostPage({ params }: BlogPageProps) {
+  const { slug } = await params;
 
-  const { slug } = params;
-
-  // Dynamic import of MDX
+  // Compile MDX on server only once (static)
   const Post = (await import(`@/content/posts/${slug}.mdx`)).default;
 
-  // Render MDX directly
-  return <Post />;
+  return (
+    // <article className="prose dark:prose-invert mx-auto">
+    //   <Post />
+    // </article>
+
+    <div className="px-4 py-10 bg-red">
+      <Prose>
+        <Post />
+      </Prose>
+    </div>
+  );
 }
