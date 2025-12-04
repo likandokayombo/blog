@@ -19,21 +19,8 @@
 //   )
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import Link from "next/link";
+
 import { getAllPosts } from "@/lib/mdx";
 
 export default function BlogPage() {
@@ -43,7 +30,7 @@ export default function BlogPage() {
     <main className="font-r prose max-w-2xl mx-auto py-10">
       <h1 className="text-red">Blog</h1>
       <ul>
-        {posts.map((post) => (
+        {posts.map(post => (
           <li key={post.slug}>
             <Link href={`/blog/${post.slug}`}>
               {post.frontmatter.title}

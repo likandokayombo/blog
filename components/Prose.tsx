@@ -11,7 +11,7 @@ export default function Prose({
     <div
       className={cn(
         "prose prose-neutral max-w-none dark:prose-invert",
-        className
+        className,
       )}
     >
       {children}

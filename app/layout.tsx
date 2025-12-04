@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 import localFont from "next/font/local";
-import "./globals.css";
 
+import "./globals.css";
 
 // Load custom fonts
 const fontH = localFont({
@@ -27,14 +27,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    
-      <html className={`${fontH.variable} ${fontR.variable} ${fontY.variable}`} lang="en">
-        <body className="antialiased">
-          
-          <main>{children}</main>
-          
-        </body>
-      </html>
-  
+
+    <html className={`${fontH.variable} ${fontR.variable} ${fontY.variable}`} lang="en">
+      <body className="antialiased">
+
+        <main>{children}</main>
+
+      </body>
+    </html>
+
   );
 }

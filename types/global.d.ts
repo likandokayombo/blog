@@ -5,11 +5,9 @@
 //   export default MDXComponent;
 // }
 
-
-
 import type { ComponentProps } from "react";
 
-declare module '*.mdx' {
-  let MDXComponent: (props: ComponentProps<'div'>) => JSX.Element;
+declare module "*.mdx" {
+  const MDXComponent: (props: ComponentProps<"div">) => JSX.Element;
   export default MDXComponent;
 }

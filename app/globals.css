@@ -5,61 +5,107 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: custom global styles can go here */
-body {
+/* ---------------------------------------------
+   MDX BLOG GLOBAL STYLES
+---------------------------------------------- */
 
-  @apply bg-background text-foreground;
-  font-family: var(--font-sans);
-  line-height: 1.6;
+.prose {
+  /* Text */
+  @apply text-gray-800 leading-relaxed;
 }
 
-/* Dark mode support using class strategy */
-.dark body {
-  /* biome-ignore lint: using Tailwind apply */
-  @apply bg-background text-foreground;
+.dark .prose {
+  @apply text-gray-200;
 }
 
-/* Theme variables */
-:root {
-  --background: #ffffff;
-  --foreground: #1f2937; /* gray-800 */
-  --primary: #6366f1;    /* indigo-500 */
-  --secondary: #10b981;  /* emerald-500 */
-  --accent: #f59e0b;     /* amber-500 */
-  --radius: 0.5rem;
+/* Headings */
+.prose h1 {
+  @apply text-4xl font-bold mt-8 mb-4;
 }
 
-/* Optional: Custom classes for re-use */
-.font-h {
-  font-family: var(--font-h, system-ui, sans-serif);
-}
-.font-r {
-  font-family: var(--font-r, system-ui, sans-serif);
-}
-.font-y {
-  font-family: var(--font-y, system-ui, sans-serif);
+.prose h2 {
+  @apply text-3xl font-semibold mt-10 mb-4;
 }
 
-/* Base layer for elements */
-@layer base {
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    color: var(--foreground);
-  }
-
-  a {
-    color: var(--primary);
-    text-decoration: underline;
-  }
-
-  button {
-    border-radius: var(--radius);
-  }
+.prose h3 {
+  @apply text-2xl font-semibold mt-8 mb-3;
 }
 
-/* Utilities override example (optional) */
-@layer utilities {
-  .rounded-xl {
-    border-radius: calc(var(--radius) * 2);
-  }
+.prose h4 {
+  @apply text-xl font-semibold mt-6 mb-2;
+}
+
+/* Paragraphs */
+.prose p {
+  @apply my-4 text-[17px];
+}
+
+/* Links */
+.prose a {
+  @apply text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:text-blue-800;
+}
+
+/* Lists */
+.prose ul {
+  @apply list-disc pl-8 my-4;
+}
+
+.prose ol {
+  @apply list-decimal pl-8 my-4;
+}
+
+.prose li {
+  @apply my-1;
+}
+
+/* Blockquote */
+.prose blockquote {
+  @apply border-l-4 border-gray-300 dark:border-gray-700 pl-4 italic my-6 text-gray-600 dark:text-gray-400;
+}
+
+/* Code */
+.prose code {
+  @apply bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm;
+}
+
+/* Preformatted blocks */
+.prose pre {
+  @apply bg-gray-900 text-gray-100 p-4 rounded-md overflow-x-auto text-sm my-6;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-gray-100;
+  box-shadow: none;
+}
+
+/* Images */
+.prose img {
+  @apply rounded-lg shadow-md my-6;
+}
+
+/* Tables */
+.prose table {
+  @apply w-full border-collapse my-6;
+}
+
+.prose th {
+  @apply bg-gray-100 dark:bg-gray-800 px-4 py-2 text-left font-semibold;
+}
+
+.prose td {
+  @apply border border-gray-300 dark:border-gray-700 px-4 py-2;
+}
+
+/* Horizontal Rule */
+.prose hr {
+  @apply my-8 border-gray-300 dark:border-gray-700;
+}
+
+/* Code blocks scrollbar */
+.prose pre::-webkit-scrollbar {
+  @apply h-2;
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+  @apply bg-gray-700 rounded-full;
 }

@@ -1,5 +1,3 @@
-
-
 // // app/blog/[slug]/page.tsx
 // import { getPostSlugs } from "@/lib/mdx";
 
@@ -25,14 +23,11 @@
 //   return <Post />;
 // }
 
-
-
-
+import fs from "node:fs";
+import path from "node:path";
 
 import type { BlogPageProps } from "@/types/blog";
 
-import fs from "node:fs"; 
-import path from "node:path"; 
 import Prose from "@/components/Prose";
 
 // Make route static
@@ -42,9 +37,9 @@ export async function generateStaticParams() {
   const postsDir = path.join(process.cwd(), "content/posts");
 
   const slugs = fs.readdirSync(postsDir)
-    .filter((file) => file.endsWith(".mdx"))
-    .map((file) => ({
-      slug: file.replace(".mdx", "")
+    .filter(file => file.endsWith(".mdx"))
+    .map(file => ({
+      slug: file.replace(".mdx", ""),
     }));
 
   return slugs;
@@ -57,9 +52,9 @@ export default async function PostPage({ params }: BlogPageProps) {
   const Post = (await import(`@/content/posts/${slug}.mdx`)).default;
 
   return (
-    // <article className="prose dark:prose-invert mx-auto">
-    //   <Post />
-    // </article>
+  // <article className="prose dark:prose-invert mx-auto">
+  //   <Post />
+  // </article>
 
     <div className="px-4 py-10 bg-red">
       <Prose>

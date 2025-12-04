@@ -1,5 +1,5 @@
-export interface BlogPageProps {
+export type BlogPageProps = {
   params: Promise<{
     slug: string;
   }>;
-}
+};

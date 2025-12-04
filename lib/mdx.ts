@@ -1,15 +1,11 @@
-
-
-
-
+import matter from "gray-matter";
 import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
 
 const postsDir = path.join(process.cwd(), "content/posts");
 
 export function getPostSlugs() {
-  return fs.readdirSync(postsDir).filter((f) => f.endsWith(".mdx"));
+  return fs.readdirSync(postsDir).filter(f => f.endsWith(".mdx"));
 }
 
 export function getPostBySlug(slug: string) {
@@ -23,6 +19,6 @@ export function getPostBySlug(slug: string) {
 
 export function getAllPosts() {
   return getPostSlugs()
-    .map((filename) => getPostBySlug(filename.replace(".mdx", "")))
+    .map(filename => getPostBySlug(filename.replace(".mdx", "")))
     .sort((a, b) => (a.frontmatter.date > b.frontmatter.date ? -1 : 1));
 }
