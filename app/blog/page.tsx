@@ -28,13 +28,11 @@ export default function BlogPage() {
 
   return (
     <main className="font-r prose max-w-2xl mx-auto py-10">
-      <h1 className="text-red">Blog</h1>
+      <h1 className="text-black">Blog</h1>
       <ul>
-        {posts.map(post => (
+        {posts.map((post) => (
           <li key={post.slug}>
-            <Link href={`/blog/${post.slug}`}>
-              {post.frontmatter.title}
-            </Link>
+            <Link href={`/blog/${post.slug}`}>{post.frontmatter.title}</Link>
             <p className="text-red text-sm">{post.frontmatter.date}</p>
           </li>
         ))}
