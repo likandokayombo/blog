@@ -42,5 +42,13 @@
     "husky": "^9.1.7",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.css": "prettier --write",
+    "*.md": "prettier --write"
   }
 }
