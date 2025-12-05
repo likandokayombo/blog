@@ -73,3 +73,74 @@ code:not(pre code) span {
   font-weight: 500;
   color: black !important;
 }
+
+pre {
+  background-color: #16161e;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  line-height: 1.5;
+  white-space: pre-wrap; /* wrap long lines */
+  word-wrap: break-word; /* break words if needed */
+  overflow-x: hidden; /* remove horizontal scroll */
+}
+
+/* Hide scrollbar for webkit browsers */
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox/IE */
+pre {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Adjust code inside pre */
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap; /* wrap code inside pre */
+  word-break: break-word;
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 14px; /* smaller base font */
+  }
+
+  body {
+    padding: 0.5rem; /* reduce default body padding */
+  }
+
+  pre {
+    padding: 0.75rem; /* reduce pre block padding */
+    font-size: 0.8rem; /* smaller code text */
+  }
+
+  code {
+    font-size: 12px; /* smaller inline code font */
+    padding: 0.1em 0.3em;
+  }
+
+  h1 {
+    font-size: 1.5rem; /* scale down headings */
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  pre {
+    font-size: 0.75rem;
+  }
+}
