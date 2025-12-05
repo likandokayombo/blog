@@ -1,24 +1,3 @@
-// // app/blog/page.tsx
-// import Link from "next/link"
-// import { getAllPosts } from "@/lib/mdx"
-
-// export default function BlogPage() {
-//   const posts = getAllPosts()
-//   return (
-//     <main>
-//       <h1>Blog</h1>
-//       <ul>
-//         {posts.map((p) => (
-//           <li key={p.slug}>
-//             <Link href={`/blog/${p.slug}`}>{p.frontmatter.title}</Link>
-//             <span> — {p.frontmatter.date}</span>
-//           </li>
-//         ))}
-//       </ul>
-//     </main>
-//   )
-// }
-
 import Link from "next/link";
 
 import { getAllPosts } from "@/lib/mdx";
