@@ -1,111 +1,75 @@
-/* globals.css */
+@import "tailwindcss";
 
-/* Tailwind base, components, utilities */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* ---------------------------------------------
-   MDX BLOG GLOBAL STYLES
----------------------------------------------- */
-
-.prose {
-  /* Text */
-  @apply text-gray-800 leading-relaxed;
+@theme {
+  --font-family-sans: "Inter", sans-serif;
 }
 
-.dark .prose {
-  @apply text-gray-200;
+:root {
+  --sh-class: #7aa2f7;
+  --sh-sign: #89ddff;
+  --sh-string: #9ece6a;
+  --sh-keyword: #bb9af7;
+  --sh-comment: #565f89;
+  --sh-jsxliterals: #7aa2f7;
+  --sh-property: #73daca;
+  --sh-entity: #e0af68;
 }
 
-/* Headings */
-.prose h1 {
-  @apply text-4xl font-bold mt-8 mb-4;
+html {
+  min-width: 360px;
+  scrollbar-gutter: stable;
 }
 
-.prose h2 {
-  @apply text-3xl font-semibold mt-10 mb-4;
+body {
+  text-rendering: optimizeLegibility;
 }
 
-.prose h3 {
-  @apply text-2xl font-semibold mt-8 mb-3;
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
 }
 
-.prose h4 {
-  @apply text-xl font-semibold mt-6 mb-2;
+pre {
+  background-color: #16161e;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  line-height: 1;
 }
 
-/* Paragraphs */
-.prose p {
-  @apply my-4 text-[17px];
+pre::-webkit-scrollbar {
+  display: none;
 }
 
-/* Links */
-.prose a {
-  @apply text-blue-600 dark:text-blue-400 underline underline-offset-2 hover:text-blue-800;
+pre {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Lists */
-.prose ul {
-  @apply list-disc pl-8 my-4;
+code {
+  font-family: "Menlo", "Monaco", "Courier New", monospace;
+  font-size: 14px;
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+  background-color: var(--color-gray-100);
 }
 
-.prose ol {
-  @apply list-decimal pl-8 my-4;
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.prose li {
-  @apply my-1;
+pre code > span .sh__token--identifier {
+  color: white !important;
 }
 
-/* Blockquote */
-.prose blockquote {
-  @apply border-l-4 border-gray-300 dark:border-gray-700 pl-4 italic my-6 text-gray-600 dark:text-gray-400;
-}
-
-/* Code */
-.prose code {
-  @apply bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm;
-}
-
-/* Preformatted blocks */
-.prose pre {
-  @apply bg-gray-900 text-gray-100 p-4 rounded-md overflow-x-auto text-sm my-6;
-}
-
-.prose pre code {
-  @apply bg-transparent p-0 text-gray-100;
-  box-shadow: none;
-}
-
-/* Images */
-.prose img {
-  @apply rounded-lg shadow-md my-6;
-}
-
-/* Tables */
-.prose table {
-  @apply w-full border-collapse my-6;
-}
-
-.prose th {
-  @apply bg-gray-100 dark:bg-gray-800 px-4 py-2 text-left font-semibold;
-}
-
-.prose td {
-  @apply border border-gray-300 dark:border-gray-700 px-4 py-2;
-}
-
-/* Horizontal Rule */
-.prose hr {
-  @apply my-8 border-gray-300 dark:border-gray-700;
-}
-
-/* Code blocks scrollbar */
-.prose pre::-webkit-scrollbar {
-  @apply h-2;
-}
-
-.prose pre::-webkit-scrollbar-thumb {
-  @apply bg-gray-700 rounded-full;
+code:not(pre code) span {
+  font-weight: 500;
+  color: black !important;
 }

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next buildt:",
     "start": "next start",
     "prepare": "husky",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
@@ -27,6 +27,7 @@
     "rehype-highlight": "^7.0.2",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
+    "sugar-high": "^0.9.5",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7"
   },
