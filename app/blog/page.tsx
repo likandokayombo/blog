@@ -6,13 +6,22 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <main className="font-r max-w-2xl py-10">
-      <h1 className="text-blue">Blog</h1>
-      <ul>
+    <main className="max-w-2xl py-10 mt-16 mx-auto px-4">
+      <ul className="space-y-6">
         {posts.map((post) => (
-          <li key={post.slug}>
-            <Link href={`/blog/${post.slug}`}>{post.frontmatter.title}</Link>
-            <p className="text-red text-sm">{post.frontmatter.date}</p>
+          <li
+            key={post.slug}
+            className="border-b border-gray-200 dark:border-gray-700 pb-4"
+          >
+            <Link
+              href={`/blog/${post.slug}`}
+              className="text-xl font-semibold text-gray-900 dark:text-gray-100 hover:text-blue-500 transition-colors"
+            >
+              {post.frontmatter.title}
+            </Link>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              {post.frontmatter.date}
+            </p>
           </li>
         ))}
       </ul>

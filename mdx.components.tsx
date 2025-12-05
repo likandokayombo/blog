@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { highlight } from "sugar-high";
 
+type title = ComponentPropsWithoutRef<"title">;
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;
 type ListProps = ComponentPropsWithoutRef<"ul">;
@@ -12,6 +13,9 @@ type AnchorProps = ComponentPropsWithoutRef<"a">;
 type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
 export const components = {
+  title: (props: title) => (
+    <title className="font-medium pt-12 mb-0 blue" {...props} />
+  ),
   h1: (props: HeadingProps) => (
     <h1 className="font-medium pt-12 mb-0" {...props} />
   ),
