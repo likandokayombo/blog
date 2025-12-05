@@ -102,5 +102,5 @@ export default async function PostPage({
   const { slug } = await params;
   const { content } = await getMdxContent(slug);
 
-  return <main className="font-r max-w-2xl py-10">{content}</main>;
+  return <main className="font-r max-w-2xl py-10 box-border">{content}</main>;
 }
