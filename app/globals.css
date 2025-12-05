@@ -15,13 +15,16 @@
   --sh-entity: #e0af68;
 }
 
-html {
-  min-width: 360px;
-  scrollbar-gutter: stable;
+/* Prevent any horizontal scroll globally */
+html,
+body {
+  overflow-x: hidden;
 }
 
 body {
   text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
 }
 
 h1,
@@ -31,72 +34,30 @@ h4 {
   text-wrap: balance;
 }
 
-pre {
-  background-color: #16161e;
-  border-radius: 0.5rem;
-  overflow-x: auto;
-  padding: 1rem;
-  margin: 1.5rem 0;
-  line-height: 1;
-}
-
-pre::-webkit-scrollbar {
-  display: none;
-}
-
-pre {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-code {
-  font-family: "Menlo", "Monaco", "Courier New", monospace;
-  font-size: 14px;
-  padding: 0.2em 0.4em;
-  border-radius: 0.3em;
-  background-color: var(--color-gray-100);
-}
-
-pre code {
-  background-color: transparent;
-  padding: 0;
-  border: none;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-pre code > span .sh__token--identifier {
-  color: white !important;
-}
-
-code:not(pre code) span {
-  font-weight: 500;
-  color: black !important;
-}
-
+/* ---------------------------
+   CODE BLOCKS
+--------------------------- */
 pre {
   background-color: #16161e;
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 1.5rem 0;
-  line-height: 1.5;
-  white-space: pre-wrap; /* wrap long lines */
-  word-wrap: break-word; /* break words if needed */
-  overflow-x: hidden; /* remove horizontal scroll */
+
+  white-space: pre-wrap; /* wrap lines */
+  word-break: break-word; /* break long words */
+  overflow-x: hidden; /* prevent horizontal scroll */
+  max-width: 100%; /* stay within container */
 }
 
-/* Hide scrollbar for webkit browsers */
+/* Hide scrollbar in all browsers */
 pre::-webkit-scrollbar {
   display: none;
 }
-
-/* Hide scrollbar for Firefox/IE */
 pre {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-/* Adjust code inside pre */
 pre code {
   background-color: transparent;
   padding: 0;
@@ -107,40 +68,56 @@ pre code {
   word-break: break-word;
 }
 
+code {
+  font-family: "Menlo", "Monaco", "Courier New", monospace;
+  font-size: 14px;
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+  background-color: var(--color-gray-100);
+  white-space: normal; /* allow inline code to wrap */
+  word-break: break-word;
+}
+
+code:not(pre code) span {
+  font-weight: 500;
+  color: black !important;
+}
+
+/* Optional: constrain images/tables */
+img,
+table {
+  max-width: 100%;
+}
+
+/* ---------------------------
+   MOBILE STYLING
+--------------------------- */
 @media (max-width: 360px) {
   html {
-    font-size: 14px; /* smaller base font */
+    font-size: 14px;
   }
 
   body {
-    padding: 0.5rem; /* reduce default body padding */
+    padding: 0.5rem;
   }
 
   pre {
-    padding: 0.75rem; /* reduce pre block padding */
-    font-size: 0.8rem; /* smaller code text */
+    padding: 0.75rem;
+    font-size: 0.8rem;
   }
 
   code {
-    font-size: 12px; /* smaller inline code font */
+    font-size: 12px;
     padding: 0.1em 0.3em;
   }
 
   h1 {
-    font-size: 1.5rem; /* scale down headings */
+    font-size: 1.5rem;
   }
-
   h2 {
     font-size: 1.25rem;
   }
-
   h3 {
     font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 360px) {
-  pre {
-    font-size: 0.75rem;
   }
 }

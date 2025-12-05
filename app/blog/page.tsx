@@ -6,7 +6,7 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <main className="font-r max-w-2xl mx-auto py-10">
+    <main className="font-r max-w-2xl py-10">
       <h1 className="text-blue">Blog</h1>
       <ul>
         {posts.map((post) => (
