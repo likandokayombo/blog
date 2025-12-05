@@ -1,5 +1,6 @@
+// types/blog.ts
 export type BlogPageProps = {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 };

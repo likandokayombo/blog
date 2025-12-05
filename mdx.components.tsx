@@ -1,11 +1,3 @@
-// import type { MDXComponents } from "mdx/types";
-
-// const components: MDXComponents = {};
-
-// export function useMDXComponents(): MDXComponents {
-//   return components;
-// }
-
 import type { ComponentPropsWithoutRef } from "react";
 
 import Link from "next/link";
@@ -19,7 +11,7 @@ type ListItemProps = ComponentPropsWithoutRef<"li">;
 type AnchorProps = ComponentPropsWithoutRef<"a">;
 type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
-const components = {
+export const components = {
   h1: (props: HeadingProps) => (
     <h1 className="font-medium pt-12 mb-0" {...props} />
   ),
@@ -37,7 +29,7 @@ const components = {
   ),
   h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
   p: (props: ParagraphProps) => (
-    <p className="text-gray-800 dark:text-zinc-300 leading-snug" {...props} />
+    <p className="text-orange-400 dark:text-zinc-300 leading-snug" {...props} />
   ),
   ol: (props: ListProps) => (
     <ol
