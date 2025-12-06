@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next buildt:",
+    "build": "next build:",
     "start": "next start",
     "prepare": "husky",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
