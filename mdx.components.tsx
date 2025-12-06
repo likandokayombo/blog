@@ -43,7 +43,7 @@ export const components = {
   ),
   ul: (props: ListProps) => (
     <ul
-      className="text-gray-400 dark:text-zinc-300 list-disc pl-5 space-y-1"
+      className="text-gray-500 dark:text-zinc-300 list-disc pl-5 space-y-1"
       {...props}
     />
   ),
@@ -52,7 +52,7 @@ export const components = {
     <em className="font-medium" {...props} />
   ),
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
-    <strong className="font-medium " {...props} />
+    <strong className="text-red-500 font-medium " {...props} />
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
     const className =
