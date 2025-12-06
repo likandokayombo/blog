@@ -14,10 +14,10 @@ type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
 export const components = {
   title: (props: title) => (
-    <title className="font-medium pt-12 mb-0 blue" {...props} />
+    <title className="font-medium pt-12 mb-0 blue text-white" {...props} />
   ),
   h1: (props: HeadingProps) => (
-    <h1 className="font-medium pt-12 mb-0" {...props} />
+    <h1 className="text-orange-400 font-medium pt-12 mb-0 " {...props} />
   ),
   h2: (props: HeadingProps) => (
     <h2
@@ -33,17 +33,17 @@ export const components = {
   ),
   h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
   p: (props: ParagraphProps) => (
-    <p className="text-orange-400 dark:text-zinc-300 leading-snug" {...props} />
+    <p className="text-white dark:text-zinc-300 leading-snug" {...props} />
   ),
   ol: (props: ListProps) => (
     <ol
-      className="text-gray-800 dark:text-zinc-300 list-decimal pl-5 space-y-2"
+      className="text-gray-600 dark:text-zinc-300 list-decimal pl-5 space-y-2"
       {...props}
     />
   ),
   ul: (props: ListProps) => (
     <ul
-      className="text-gray-800 dark:text-zinc-300 list-disc pl-5 space-y-1"
+      className="text-gray-400 dark:text-zinc-300 list-disc pl-5 space-y-1"
       {...props}
     />
   ),
@@ -52,7 +52,7 @@ export const components = {
     <em className="font-medium" {...props} />
   ),
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
-    <strong className="font-medium" {...props} />
+    <strong className="font-medium " {...props} />
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
     const className =
