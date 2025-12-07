@@ -9,14 +9,11 @@ import Navbar from "@/components/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  title: "Likando Kayombo",
+  description: "My personal blog.",
   alternates: {
     canonical: "/",
   },
-  title: {
-    default: "Likando kayombo",
-    template: "%s | likandokayombo",
-  },
-  description: "My personal blog.",
 };
 
 export { useMDXComponents } from "@/mdx.components";
@@ -27,9 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.className}`}>
+    <html lang="en" className={inter.className}>
       <body className="bg-[#121212]">
-        <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 dark:bg-zinc-950  dark:text-zinc-200">
+        <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 dark:bg-zinc-950 dark:text-zinc-200">
           <main className="max-w-[60ch] mx-auto w-full space-y-6">
             <Navbar />
             {children}

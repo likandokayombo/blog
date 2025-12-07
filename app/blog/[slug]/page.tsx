@@ -29,8 +29,8 @@ export async function generateStaticParams() {
   const files = await fs.readdir(postsDir);
 
   return files
-    .filter((file) => file.endsWith(".mdx"))
-    .map((file) => ({
+    .filter((file: string) => file.endsWith(".mdx"))
+    .map((file: string) => ({
       slug: file.replace(".mdx", ""),
     }));
 }

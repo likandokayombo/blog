@@ -1,8 +1,7 @@
 "use client";
-
+import { LucideGithub } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FiGithub } from "react-icons/fi";
 
 export default function Navbar() {
   return (
@@ -40,7 +39,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="text-gray-100 hover:text-blue-400 transition-colors"
             >
-              <FiGithub size={24} />
+              <LucideGithub size={24} color="#fff" />
             </a>
           </div>
         </div>

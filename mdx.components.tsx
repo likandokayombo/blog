@@ -4,7 +4,8 @@ import Link from "next/link";
 import React from "react";
 import { highlight } from "sugar-high";
 
-type title = ComponentPropsWithoutRef<"title">;
+// Type aliases for intrinsic HTML elements
+type TitleProps = ComponentPropsWithoutRef<"title">;
 type HeadingProps = ComponentPropsWithoutRef<"h1">;
 type ParagraphProps = ComponentPropsWithoutRef<"p">;
 type ListProps = ComponentPropsWithoutRef<"ul">;
@@ -12,12 +13,13 @@ type ListItemProps = ComponentPropsWithoutRef<"li">;
 type AnchorProps = ComponentPropsWithoutRef<"a">;
 type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
+// MDX components object
 export const components = {
-  title: (props: title) => (
+  title: (props: TitleProps) => (
     <title className="font-medium pt-12 mb-0 blue text-white" {...props} />
   ),
   h1: (props: HeadingProps) => (
-    <h1 className="text-orange-400 font-medium pt-12 mb-0 " {...props} />
+    <h1 className="text-orange-400 font-medium pt-12 mb-0" {...props} />
   ),
   h2: (props: HeadingProps) => (
     <h2
@@ -52,7 +54,7 @@ export const components = {
     <em className="font-medium" {...props} />
   ),
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
-    <strong className="text-red-500 font-medium " {...props} />
+    <strong className="text-red-500 font-medium" {...props} />
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
     const className =
@@ -115,10 +117,10 @@ export const components = {
   ),
 };
 
-declare global {
-  type MDXProvidedComponents = typeof components;
-}
+// Type-safe global MDX components
+export type MDXProvidedComponents = typeof components;
 
+// Hook to use components
 export function useMDXComponents(): MDXProvidedComponents {
   return components;
 }

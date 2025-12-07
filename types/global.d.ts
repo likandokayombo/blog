@@ -1,13 +1,7 @@
-// import { ComponentType } from "react";
-
-// declare module '*.mdx' {
-//   const MDXComponent: ComponentType<Record<string, unknown>>;
-//   export default MDXComponent;
-// }
-
-import type { ComponentProps } from "react";
+// types/goba.d.ts
+import type { ComponentType } from "react";
 
 declare module "*.mdx" {
-  const MDXComponent: (props: ComponentProps<"div">) => JSX.Element;
+  const MDXComponent: ComponentType<any>;
   export default MDXComponent;
 }

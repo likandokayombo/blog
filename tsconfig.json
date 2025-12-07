@@ -1,41 +1,19 @@
-// {
-//   "compilerOptions": {
-//     "target": "ES2017",
-//     "lib": ["dom", "dom.iterable", "esnext"],
-//     "allowJs": true,
-//     "skipLibCheck": true,
-//     "strict": true,
-//     "noEmit": true,
-//     "esModuleInterop": true,
-//     "module": "esnext",
-//     "moduleResolution": "bundler",
-//     "resolveJsonModule": true,
-//     "isolatedModules": true,
-//     "jsx": "preserve",
-//     "incremental": true,
-//     "plugins": [
-//       {
-//         "name": "next"
-//       }
-//     ],
-//     "paths": {
-//       "@/*": ["./*"]
-//     }
-//   },
-//   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-//   "exclude": ["node_modules"]
-// }
-
 {
   "compilerOptions": {
     "incremental": true,
     "target": "ES2017",
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     },
     "resolveJsonModule": true,
     "allowJs": true,
@@ -55,7 +33,11 @@
     "**/*.ts",
     "**/*.tsx",
     "app/types", // 👈 ADD THIS
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    ".next"
+  ]
 }
