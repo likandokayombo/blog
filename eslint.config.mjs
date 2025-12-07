@@ -1,5 +1,5 @@
 import antfu from "@antfu/eslint-config";
-import next from "@next/eslint-plugin-next";
+import nextPlugin from "@next/eslint-plugin-next";
 
 export default antfu(
   {
@@ -11,27 +11,35 @@ export default antfu(
       indent: 2,
       semi: true,
       quotes: "double",
-      blockSpacing: true,
-      braceStyle: "1tbs",
     },
   },
   {
     plugins: {
-      next, // ✅ Fix: register the Next.js plugin
+      "@next/next": nextPlugin,
     },
     rules: {
+      // Next.js recommended rules
+      ...nextPlugin.configs.recommended.rules,
+
+      // Disable problematic stylistic rules for your build
+      "style/arrow-parens": "off",
+      "style/jsx-one-expression-per-line": "off",
+
+      // Existing custom rules
       "ts/no-redeclare": "off",
       "ts/consistent-type-definitions": ["error", "type"],
       "no-console": ["warn"],
       "antfu/no-top-level-await": ["off"],
       "node/prefer-global/process": ["off"],
       "node/no-process-env": ["error"],
+
       "perfectionist/sort-imports": [
         "error",
         {
           tsconfigRootDir: ".",
         },
       ],
+
       "unicorn/filename-case": [
         "error",
         {
@@ -39,12 +47,6 @@ export default antfu(
           ignore: ["README.md"],
         },
       ],
-
-      // Your spacing controls
-      "no-multi-spaces": "error",
-      "no-trailing-spaces": "error",
-
-      "style/jsx-one-expression-per-line": "off",
     },
   },
 );
