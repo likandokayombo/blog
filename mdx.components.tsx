@@ -25,11 +25,11 @@ export const components = {
     <h2 className="text-gray-800  font-medium mt-8 mb-3" {...props} />
   ),
   h3: (props: HeadingProps) => (
-    <h3 className="text-gray-800 font-medium mt-8 mb-3" {...props} />
+    <h3 className="text-black font-medium mt-8 mb-3" {...props} />
   ),
   h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
   p: (props: ParagraphProps) => (
-    <p className="text-gray-800 dark:text-zinc-300 leading-snug" {...props} />
+    <p className="text-black dark:text-zinc-300 leading-snug" {...props} />
   ),
   ol: (props: ListProps) => (
     <ol
@@ -105,7 +105,7 @@ export const components = {
   ),
   blockquote: (props: BlockquoteProps) => (
     <blockquote
-      className="ml-[0.075em] border-l-3 border-gray-300 pl-4 text-gray-700 dark:border-zinc-600 dark:text-zinc-300"
+      className="ml-[0.075em] border-l-3 border-gray-800 pl-4 text-gray-700 dark:border-zinc-600 dark:text-zinc-300"
       {...props}
     />
   ),
