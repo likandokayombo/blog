@@ -1,13 +1,27 @@
 import "./globals.css";
 import type { Metadata } from "next";
 
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
-
+const zalando = localFont({
+  src: [
+    {
+      path: "./fonts/h.woff",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/y.woff",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-zalando",
+  display: "swap",
+});
 export const metadata: Metadata = {
   title: "Likando Kayombo",
   description: "My personal blog.",
@@ -24,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={zalando.className}>
       <body style={{ backgroundColor: "lab(97.7061 -0.0120103 1.9075)" }}>
         <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 dark:bg-zinc-950 dark:text-zinc-200">
           <main className="max-w-[60ch] mx-auto w-full space-y-6">
