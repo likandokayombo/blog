@@ -1,9 +1,4 @@
 @import "tailwindcss";
-
-@theme {
-  --font-family-sans: "Inter", sans-serif;
-}
-
 :root {
   /* Prevent horizontal scroll globally */
   overflow-x: hidden;
