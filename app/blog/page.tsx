@@ -9,10 +9,7 @@ export default function BlogPage() {
     <main className="max-w-2xl py-10 mt-16 mx-auto px-4">
       <ul className="space-y-6">
         {posts.map((post) => (
-          <li
-            key={post.slug}
-            className="border-b border-gray-200 dark:border-white pb-4 text-black"
-          >
+          <li key={post.slug} className=" pb-4 text-black">
             <Link
               href={`/blog/${post.slug}`}
               className="text-xl font-semibold dark:text-gray-100 hover:text-blue-500 transition-colors"

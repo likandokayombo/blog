@@ -8,26 +8,17 @@ import Navbar from "@/components/navbar";
 
 const zalando = localFont({
   src: [
-    {
-      path: "./fonts/h.woff",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/y.woff",
-      weight: "700",
-      style: "normal",
-    },
+    { path: "./fonts/h.woff", weight: "400", style: "normal" },
+    { path: "./fonts/y.woff", weight: "700", style: "normal" },
   ],
   variable: "--font-zalando",
   display: "swap",
 });
+
 export const metadata: Metadata = {
   title: "Likando Kayombo",
   description: "My personal blog.",
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
 };
 
 export { useMDXComponents } from "@/mdx.components";
@@ -39,8 +30,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={zalando.className}>
-      <body style={{ backgroundColor: "lab(97.7061 -0.0120103 1.9075)" }}>
-        <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 dark:bg-zinc-950 dark:text-zinc-200">
+      <body className="bg-[#fefefe] text-black">
+        <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8">
           <main className="max-w-[60ch] mx-auto w-full space-y-6">
             <Navbar />
             {children}
