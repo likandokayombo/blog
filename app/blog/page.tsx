@@ -12,11 +12,11 @@ export default function BlogPage() {
           <li key={post.slug} className=" pb-4 text-black">
             <Link
               href={`/blog/${post.slug}`}
-              className="text-xl font-semibold dark:text-gray-100 hover:text-blue-500 transition-colors"
+              className="text-xl font-semibold text-black hover:text-blue-500 transition-colors"
             >
               {post.frontmatter.title}
             </Link>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            <p className="text-sm text-gray-800  mt-1">
               {post.frontmatter.date}
             </p>
           </li>

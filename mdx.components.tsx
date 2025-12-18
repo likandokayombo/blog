@@ -16,22 +16,16 @@ type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 // MDX components object
 export const components = {
   title: (props: TitleProps) => (
-    <title className="font-medium pt-12 mb-0 blue text-white" {...props} />
+    <title className="font-medium pt-12 mb-0 blue text-black" {...props} />
   ),
   h1: (props: HeadingProps) => (
     <h1 className="text-orange-400 font-medium pt-12 mb-0" {...props} />
   ),
   h2: (props: HeadingProps) => (
-    <h2
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3"
-      {...props}
-    />
+    <h2 className="text-gray-800  font-medium mt-8 mb-3" {...props} />
   ),
   h3: (props: HeadingProps) => (
-    <h3
-      className="text-gray-800 dark:text-zinc-200 font-medium mt-8 mb-3"
-      {...props}
-    />
+    <h3 className="text-gray-800 font-medium mt-8 mb-3" {...props} />
   ),
   h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
   p: (props: ParagraphProps) => (
@@ -58,7 +52,7 @@ export const components = {
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
     const className =
-      "text-blue-500 hover:text-blue-700 dark:text-gray-400 hover:dark:text-gray-300 dark:underline dark:underline-offset-2 dark:decoration-gray-800";
+      "text-blue-500 hover:text-blue-700 dark:underline dark:underline-offset-2";
     if (href?.startsWith("/")) {
       return (
         <Link href={href} className={className} {...props}>
