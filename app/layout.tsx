@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.className}>
-      <body className="bg-[#121212]">
+      <body style={{ backgroundColor: "lab(97.7061 -0.0120103 1.9075)" }}>
         <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 dark:bg-zinc-950 dark:text-zinc-200">
           <main className="max-w-[60ch] mx-auto w-full space-y-6">
             <Navbar />

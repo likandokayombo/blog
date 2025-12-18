@@ -11,7 +11,7 @@ export default function BlogPage() {
         {posts.map((post) => (
           <li
             key={post.slug}
-            className="border-b border-gray-200 dark:border-white pb-4 text-white"
+            className="border-b border-gray-200 dark:border-white pb-4 text-black"
           >
             <Link
               href={`/blog/${post.slug}`}

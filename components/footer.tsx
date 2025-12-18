@@ -4,16 +4,13 @@ export default function Footer() {
   return (
     <footer className="w-full border-t border-white/10 py-6 text-center text-sm text-white">
       <p>
-        © {new Date().getFullYear()} All rights reserved. Made by{" "}
-        <span className="text-red-500 underline">Likando Kayombo</span>
-      </p>
-
-      <p className="mt-2">
+        © {new Date().getFullYear()}{" "}
+        <span className="text-gray-500">Likando Kayombo</span> ·{" "}
         <Link
           href="/changelog"
-          className="text-white underline hover:text-blue-300"
+          className="text-gray-600 underline hover:text-blue-300"
         >
-          Changelog
+          CHANGELOG
         </Link>
       </p>
     </footer>
