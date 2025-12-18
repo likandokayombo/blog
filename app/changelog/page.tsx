@@ -10,8 +10,7 @@ export default async function ChangelogPage() {
   const { content } = await compileMDX({ source });
 
   return (
-    <article className="prose prose-invert mx-auto text-white py-12">
-      <h1>Changelog</h1>
+    <article className="prose prose-invert mx-auto text-white py-12 mt-15">
       {content}
     </article>
   );
