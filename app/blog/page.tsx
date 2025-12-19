@@ -6,13 +6,13 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <main className="max-w-2xl py-10 mt-16 mx-auto px-4">
+    <main className="max-w-2xl py-10 mt-16 mb-5 px-4">
       <ul className="space-y-6">
         {posts.map((post) => (
-          <li key={post.slug} className=" pb-4 text-black">
+          <li key={post.slug} className="  text-black">
             <Link
               href={`/blog/${post.slug}`}
-              className="text-xl font-semibold text-black hover:text-blue-500 transition-colors"
+              className="text-xl font-semibold text-black"
             >
               {post.frontmatter.title}
             </Link>

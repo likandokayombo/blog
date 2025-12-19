@@ -19,23 +19,26 @@ export const components = {
     <title className="font-medium pt-12 mb-0 blue text-black" {...props} />
   ),
   h1: (props: HeadingProps) => (
-    <h1 className="text-orange-400 font-medium pt-12 mb-0" {...props} />
+    <h1
+      className="text-orange-400 font-medium pt-12 mb-0 last:mb-0"
+      {...props}
+    />
   ),
   h2: (props: HeadingProps) => (
-    <h2 className="text-black  font-medium mt-8 mb-3" {...props} />
+    <h2 className="text-black font-medium mt-8 mb-3 last:mb-0" {...props} />
   ),
   h3: (props: HeadingProps) => (
     <h3 className="text-black font-medium mt-8 mb-3" {...props} />
   ),
   h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
   p: (props: ParagraphProps) => (
-    <p className="text-black  leading-snug" {...props} />
+    <p className="text-black leading-snug last:mb-0" {...props} />
   ),
   ol: (props: ListProps) => (
     <ol className="text-gray-600  list-decimal pl-5 space-y-2" {...props} />
   ),
   ul: (props: ListProps) => (
-    <ul className="text-black list-disc pl-5 space-y-1" {...props} />
+    <ul className="text-black list-disc pl-5 space-y-1 last:mb-0" {...props} />
   ),
   li: (props: ListItemProps) => <li className="pl-1" {...props} />,
   em: (props: ComponentPropsWithoutRef<"em">) => (

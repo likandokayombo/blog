@@ -3,19 +3,7 @@
   /* Prevent horizontal scroll globally */
   overflow-x: hidden;
   box-sizing: border-box;
-
-  /* Color tokens */
-  --sh-class: #7aa2f7;
-  --sh-sign: #89ddff;
-  --sh-string: #9ece6a;
-  --sh-keyword: #bb9af7;
-  --sh-comment: #565f89;
-  --sh-jsxliterals: #7aa2f7;
-  --sh-property: #73daca;
-  --sh-entity: #e0af68;
 }
-
-/* Apply box-sizing to all elements */
 *,
 *::before,
 *::after {
@@ -28,6 +16,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  height: auto;
   overflow-x: hidden;
 }
 
