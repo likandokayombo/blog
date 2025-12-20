@@ -30,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={zalando.className}>
-      <body className="bg-[#fefefe] antialiased">
+      <body className="bg-[#fefefe] antialiased mb-0 min-h-screen">
         {/* Content-driven layout */}
         <div className="flex flex-col">
           <Navbar />
