@@ -3,17 +3,14 @@
     "incremental": true,
     "target": "ES2017",
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@app/*": ["app/*"],
+      "@components/*": ["app/components/*"],
+      "@lib/*": ["lib/*"]
     },
     "resolveJsonModule": true,
     "allowJs": true,
@@ -23,16 +20,14 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "plugins": [
-      {
-        "name": "next"
-      }
+      { "name": "next" }
     ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "app/types", // 👈 ADD THIS
+    "app/types",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],

@@ -3,8 +3,9 @@ import type { Metadata } from "next";
 
 import localFont from "next/font/local";
 
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
+import { ConvexClientProvider } from "@app/convex-client-provider";
+import Footer from "@components/footer";
+import Navbar from "@components/navbar";
 
 const zalando = localFont({
   src: [
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export { useMDXComponents } from "@/mdx.components";
+export { useMDXComponents } from "@lib/mdx.components";
 
 export default function RootLayout({
   children,
@@ -36,7 +37,7 @@ export default function RootLayout({
           <Navbar />
 
           <main className="w-full max-w-[60ch] mx-auto px-4 py-8">
-            {children}
+            <ConvexClientProvider>{children}</ConvexClientProvider>
           </main>
 
           <Footer />

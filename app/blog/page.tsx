@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { getAllPosts } from "@/lib/mdx";
+import { getAllPosts } from "@lib/mdx";
 
 export default function BlogPage() {
   const posts = getAllPosts();

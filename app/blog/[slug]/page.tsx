@@ -5,7 +5,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { cache } from "react";
 
-import { components } from "@/mdx.components";
+import { components } from "@lib/mdx.components";
 
 // ---------------------------------------------
 // 1. Cached MDX loader
