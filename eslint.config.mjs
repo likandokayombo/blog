@@ -7,6 +7,11 @@ export default antfu(
     nextjs: true,
     typescript: true,
     formatters: true,
+
+    ignores: [
+      "convex/**",
+    ],
+
     stylistic: {
       indent: 2,
       semi: true,
@@ -29,10 +34,10 @@ export default antfu(
       "ts/no-redeclare": "off",
       "ts/consistent-type-definitions": ["error", "type"],
       "no-console": ["warn"],
-      "antfu/no-top-level-await": ["off"],
+      "antfu/no-top-level-await": "off",
       "eslint-comments/no-unlimited-disable": "off",
-      "node/prefer-global/process": ["off"],
-      "node/no-process-env": ["error"],
+      "node/prefer-global/process": "off",
+      "node/no-process-env": "error",
 
       "perfectionist/sort-imports": [
         "error",
