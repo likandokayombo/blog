@@ -35,7 +35,6 @@ export default antfu(
       "ts/consistent-type-definitions": ["error", "type"],
       "no-console": ["warn"],
       "antfu/no-top-level-await": "off",
-      "eslint-comments/no-unlimited-disable": "off",
       "node/prefer-global/process": "off",
       "node/no-process-env": "error",
 
