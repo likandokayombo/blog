@@ -16,5 +16,5 @@ export default defineSchema({
         }),
       ),
     ),
-  }).index("by_createdAt", ["createdAt", "_creationTime"]),
+  }),
 });
