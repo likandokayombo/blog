@@ -10,8 +10,7 @@ function createConvexClient() {
 
   if (!url) {
     throw new Error(
-      "NEXT_PUBLIC_CONVEX_URL is not set. " +
-        "Add it to Vercel Environment Variables.",
+      `NEXT_PUBLIC_CONVEX_URL is not set. Add it to Vercel Environment Variables.`,
     );
   }
 
