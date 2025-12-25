@@ -3,9 +3,10 @@ import { v } from "convex/values";
 
 export default defineSchema({
   moodBoard: defineTable({
-    fileId: v.id("_storage"),
+    fileId: v.optional(v.id("_storage")),
     createdAt: v.number(),
     username: v.optional(v.string()),
+    message: v.optional(v.string()),
     strokes: v.optional(
       v.array(
         v.object({

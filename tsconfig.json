@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "ES2017",
+    "target": "ES2020",
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "paths": {
+      "@/*": ["./*"],
       "@app/*": ["app/*"],
       "@components/*": ["app/components/*"],
       "@lib/*": ["lib/*"]
@@ -19,9 +20,7 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "plugins": [
-      { "name": "next" }
-    ]
+    "plugins": [{ "name": "next" }]
   },
   "include": [
     "next-env.d.ts",
@@ -31,8 +30,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    ".next"
-  ]
+  "exclude": ["node_modules", ".next"]
 }
