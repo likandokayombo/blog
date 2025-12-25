@@ -11,7 +11,7 @@ export default function MoodBoardCanvas() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<"drawing" | "text">("drawing");
-  
+
   const generateUploadUrl = useMutation(api.files.generateUploadUrl);
   const create = useMutation(api.moodBoard.create);
 
@@ -47,23 +47,25 @@ export default function MoodBoardCanvas() {
         });
         const json = await result.json();
         storageId = json.storageId;
-        
+
         await create({ storageId: storageId as any });
         sigRef.current.clear();
-      } 
+      }
       // Handle Text Mode
       else {
         if (!message.trim()) {
-           setLoading(false);
-           return;
+          setLoading(false);
+          return;
         }
         await create({ message });
         setMessage("");
       }
-    } catch (error) {
+    }
+    catch (error) {
       console.error("Failed to submit:", error);
       alert("Failed to submit. Please try again.");
-    } finally {
+    }
+    finally {
       setLoading(false);
     }
   };
@@ -96,32 +98,34 @@ export default function MoodBoardCanvas() {
 
       {/* Input Area */}
       <div className={`border rounded-b-lg rounded-tr-lg p-4 bg-white ${mode === "text" ? "border-t-0 rounded-tl-none" : ""}`}>
-        {mode === "drawing" ? (
-          <div className="border border-dashed border-gray-300 rounded bg-gray-50">
-            <SignatureCanvas
-              ref={sigRef}
-              penColor="black"
-              canvasProps={{
-                width: 500,
-                height: 250,
-                className: "w-full cursor-crosshair",
-              }}
-            />
-             <p className="text-xs text-gray-400 text-center py-1 select-none">Draw something above!</p>
-          </div>
-        ) : (
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type your message here..."
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black min-h-[250px]"
-          />
-        )}
+        {mode === "drawing"
+          ? (
+              <div className="border border-dashed border-gray-300 rounded bg-gray-50">
+                <SignatureCanvas
+                  ref={sigRef}
+                  penColor="black"
+                  canvasProps={{
+                    width: 500,
+                    height: 250,
+                    className: "w-full cursor-crosshair",
+                  }}
+                />
+                <p className="text-xs text-gray-400 text-center py-1 select-none">Draw something above!</p>
+              </div>
+            )
+          : (
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Type your message here..."
+                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black min-h-[250px]"
+              />
+            )}
       </div>
 
       <div className="flex gap-3 justify-end">
-        <button 
-          onClick={clear} 
+        <button
+          onClick={clear}
           className="px-4 py-2 text-sm text-gray-600 hover:text-red-500 transition-colors"
         >
           Clear

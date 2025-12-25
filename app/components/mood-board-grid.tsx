@@ -9,7 +9,7 @@ export default function MoodBoardGrid() {
   const { results, status, loadMore } = usePaginatedQuery(
     api.moodBoard.list,
     {},
-    { initialNumItems: 10 }
+    { initialNumItems: 10 },
   );
 
   return (
@@ -44,10 +44,10 @@ export default function MoodBoardGrid() {
                 {entry.message}
               </div>
             )}
-            
+
             {/* Footer with date */}
             <div className="mt-2 pt-2 border-t text-xs text-gray-400 text-right">
-                {new Date(entry.createdAt).toLocaleDateString()}
+              {new Date(entry.createdAt).toLocaleDateString()}
             </div>
           </div>
         ))}
