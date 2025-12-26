@@ -9,7 +9,7 @@ export default function MoodBoardGrid() {
   const { results, status, loadMore } = usePaginatedQuery(
     api.moodBoard.list,
     {},
-    { initialNumItems: 10 },
+    { initialNumItems: 10 }
   );
 
   return (
