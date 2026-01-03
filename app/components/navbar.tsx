@@ -21,13 +21,18 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Center: Navigation links */}
-          <div className="flex space-x-4">
+          <div className="flex space-x-6">
             <Link
               href="/about"
-              className="text-gray-100 hover:text-blue-400 transition-colors ml-50"
+              className="text-gray-100 hover:text-blue-400 transition-colors font-medium"
             >
               About
+            </Link>
+            <Link
+              href="/moodboard"
+              className="text-gray-100 hover:text-blue-400 transition-colors font-medium"
+            >
+              Mood Board
             </Link>
           </div>
 

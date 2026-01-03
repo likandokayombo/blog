@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation } from "convex/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SignatureCanvas from "react-signature-canvas";
 
 import { api } from "@/convex/_generated/api";
@@ -14,6 +14,24 @@ export default function MoodBoardCanvas() {
 
   const generateUploadUrl = useMutation(api.files.generateUploadUrl);
   const create = useMutation(api.moodBoard.create);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [canvasSize, setCanvasSize] = useState({ width: 500, height: 300 });
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        const width = containerRef.current.offsetWidth;
+        // Maintain 2:1 aspect ratio but cap height for mobile
+        const height = Math.min(width * 0.5, 400);
+        setCanvasSize({ width, height });
+      }
+    };
+
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
 
   const clear = () => {
     if (mode === "drawing") {
@@ -96,19 +114,24 @@ export default function MoodBoardCanvas() {
       </div>
 
       {/* Input Area */}
-      <div className={`border rounded-b-lg rounded-tr-lg p-4 bg-white ${mode === "text" ? "border-t-0 rounded-tl-none" : ""}`}>
+      <div
+        ref={containerRef}
+        className={`border rounded-b-lg rounded-tr-lg p-4 bg-white ${mode === "text" ? "border-t-0 rounded-tl-none" : ""}`}
+      >
         {mode === "drawing" ? (
-          <div className="border border-dashed border-gray-300 rounded bg-gray-50">
+          <div className="border border-dashed border-gray-300 rounded bg-gray-50 overflow-hidden">
             <SignatureCanvas
               ref={sigRef}
               canvasProps={{
-                width: 500,
-                height: 250,
-                className: "w-full cursor-crosshair",
+                width: canvasSize.width,
+                height: canvasSize.height,
+                className: "cursor-crosshair",
               }}
               penColor="black"
             />
-            <p className="text-xs text-gray-400 text-center py-1 select-none">Draw something above!</p>
+            <p className="text-xs text-gray-400 text-center py-1 select-none">
+              Draw something above!
+            </p>
           </div>
         ) : (
           <textarea

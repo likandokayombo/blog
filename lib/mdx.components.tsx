@@ -15,40 +15,28 @@ type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
 // MDX components object
 export const components = {
-  title: (props: TitleProps) => (
-    <title className="font-medium pt-12 mb-0 blue text-black" {...props} />
-  ),
-  h1: (props: HeadingProps) => (
-    <h1
-      className="text-orange-400 font-medium pt-12 mb-0 last:mb-0"
-      {...props}
-    />
-  ),
-  h2: (props: HeadingProps) => (
-    <h2 className="text-black font-medium mt-8 mb-3 last:mb-0" {...props} />
-  ),
-  h3: (props: HeadingProps) => (
-    <h3 className="text-black font-medium mt-8 mb-3" {...props} />
-  ),
-  h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
-  p: (props: ParagraphProps) => (
-    <p className="text-black leading-snug last:mb-0" {...props} />
-  ),
+  title: (props: TitleProps) => <title {...props} />,
+  h1: (props: HeadingProps) => <h1 {...props} />,
+  h2: (props: HeadingProps) => <h2 {...props} />,
+  h3: (props: HeadingProps) => <h3 {...props} />,
+  h4: (props: HeadingProps) => <h4 {...props} />,
+  p: (props: ParagraphProps) => <p {...props} />,
   ol: (props: ListProps) => (
-    <ol className="text-gray-600  list-decimal pl-5 space-y-2" {...props} />
+    <ol className="list-decimal pl-5 space-y-2" {...props} />
   ),
   ul: (props: ListProps) => (
-    <ul className="text-black list-disc pl-5 space-y-1 last:mb-0" {...props} />
+    <ul className="list-disc pl-5 space-y-1" {...props} />
   ),
   li: (props: ListItemProps) => <li className="pl-1" {...props} />,
   em: (props: ComponentPropsWithoutRef<"em">) => (
     <em className="font-medium" {...props} />
   ),
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
-    <strong className="text-red-500 font-medium" {...props} />
+    <strong className="font-bold font-medium text-black" {...props} />
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
-    const className = "text-blue-500 dark:underline dark:underline-offset-2";
+    const className =
+      "text-blue-600 underline underline-offset-4 decoration-blue-300 hover:decoration-blue-600 transition-colors";
     if (href?.startsWith("/")) {
       return (
         <Link href={href} className={className} {...props}>
@@ -80,28 +68,34 @@ export const components = {
     return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
   },
   Table: ({ data }: { data: { headers: string[]; rows: string[][] } }) => (
-    <table>
-      <thead>
-        <tr>
-          {data.headers.map((header, index) => (
-            <th key={index}>{header}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.rows.map((row, index) => (
-          <tr key={index}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
+    <div className="overflow-x-auto my-6">
+      <table className="w-full">
+        <thead>
+          <tr className="border-b">
+            {data.headers.map((header, index) => (
+              <th key={index} className="text-left font-semibold py-2">
+                {header}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {data.rows.map((row, index) => (
+            <tr key={index} className="border-b last:border-0">
+              {row.map((cell, cellIndex) => (
+                <td key={cellIndex} className="py-2">
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   ),
   blockquote: (props: BlockquoteProps) => (
     <blockquote
-      className="ml-[0.075em] border-l-3 border-gray-800 pl-4 text-gray-700 dark:border-zinc-600 dark:text-zinc-300"
+      className="border-l-4 border-gray-200 pl-4 my-6 italic text-gray-700"
       {...props}
     />
   ),

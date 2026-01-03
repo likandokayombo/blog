@@ -37,9 +37,7 @@ h4 {
    MAIN CONTAINER
 --------------------------- */
 main {
-  max-width: 100vw; /* never exceed viewport */
-  padding-left: 1rem; /* safe horizontal padding */
-  padding-right: 1rem;
+  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -50,19 +48,17 @@ pre {
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 1.5rem 0;
-
-  white-space: pre-wrap; /* wrap long lines */
-  word-break: break-word; /* break words if needed */
-  overflow-x: hidden; /* remove horizontal scroll */
-  max-width: 100vw; /* stay inside viewport */
+  white-space: pre;
+  overflow-x: auto; /* allow horizontal scroll for code */
+  max-width: 100%;
 }
 
 pre::-webkit-scrollbar {
-  display: none;
+  height: 8px;
 }
-pre {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+pre::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
 pre code {
@@ -71,8 +67,6 @@ pre code {
   border: none;
   font-size: 14px;
   line-height: 1.5;
-  white-space: pre-wrap;
-  word-break: break-word;
 }
 
 code {
@@ -80,14 +74,9 @@ code {
   font-size: 14px;
   padding: 0.2em 0.4em;
   border-radius: 0.3em;
-  background-color: var(--color-gray-100);
-  white-space: normal; /* allow inline code to wrap */
+  background-color: #f3f4f6;
+  white-space: normal;
   word-break: break-word;
-}
-
-code:not(pre code) span {
-  font-weight: 500;
-  color: black !important;
 }
 
 /* ---------------------------
@@ -95,45 +84,28 @@ code:not(pre code) span {
 --------------------------- */
 img,
 table {
-  max-width: 100vw !important; /* prevent overflow */
+  max-width: 100% !important;
+  height: auto;
   display: block;
-  overflow-x: hidden;
 }
 
 /* ---------------------------
    MOBILE STYLING
 --------------------------- */
-@media (max-width: 360px) {
+@media (max-width: 640px) {
   html {
     font-size: 14px;
   }
 
-  body {
-    padding: 0.5rem;
-  }
-
-  main {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
   pre {
     padding: 0.75rem;
-    font-size: 0.8rem;
-  }
-
-  code {
-    font-size: 12px;
-    padding: 0.1em 0.3em;
+    font-size: 13px;
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
   h2 {
-    font-size: 1.25rem;
-  }
-  h3 {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
   }
 }

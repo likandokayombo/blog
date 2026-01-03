@@ -9,14 +9,12 @@ export default function MoodBoardGrid() {
   const { results, status, loadMore } = usePaginatedQuery(
     api.moodBoard.list,
     {},
-    { initialNumItems: 10 }
+    { initialNumItems: 10 },
   );
 
   return (
     <section className="p-4 max-w-7xl mx-auto">
-      <h2 className="text-2xl font-bold mb-6 text-center">
-        Moods
-      </h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Moods</h2>
 
       {/* Masonry Layout using CSS Columns */}
       <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
@@ -40,7 +38,9 @@ export default function MoodBoardGrid() {
 
             {/* Show message if exists */}
             {entry.message && (
-              <div className={`text-sm text-gray-700 break-words ${!entry.url ? "p-4 text-center flex items-center justify-center min-h-[150px] italic bg-gray-50 rounded" : "bg-gray-50 p-2 rounded"}`}>
+              <div
+                className={`text-sm text-gray-700 break-words ${!entry.url ? "p-4 text-center flex items-center justify-center min-h-[150px] italic bg-gray-50 rounded" : "bg-gray-50 p-2 rounded"}`}
+              >
                 {entry.message}
               </div>
             )}

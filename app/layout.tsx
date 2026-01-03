@@ -33,10 +33,10 @@ export default function RootLayout({
     <html lang="en" className={zalando.className}>
       <body className="bg-[#fefefe] antialiased mb-0 min-h-screen">
         {/* Content-driven layout */}
-        <div className="flex flex-col">
+        <div className="flex flex-col min-h-screen">
           <Navbar />
 
-          <main className="w-full max-w-[60ch] mx-auto px-4 py-8">
+          <main className="flex-1 w-full max-w-5xl mx-auto px-4 py-8 pt-24">
             <ConvexClientProvider>{children}</ConvexClientProvider>
           </main>
 

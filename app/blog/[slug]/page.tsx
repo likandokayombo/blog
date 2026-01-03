@@ -67,6 +67,8 @@ export default async function PostPage({
   const { content } = await getMdxContent(slug);
 
   return (
-    <main className=" max-w-2xl py-10 text-black box-border">{content}</main>
+    <div className="max-w-2xl mx-auto py-10 mb-5 text-black px-4">
+      {content}
+    </div>
   );
 }

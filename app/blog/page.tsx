@@ -6,7 +6,7 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <main className="max-w-2xl py-10 mt-16 mb-5 px-4">
+    <div className="max-w-2xl mx-auto py-10 mb-5">
       <ul className="space-y-6">
         {posts.map((post) => (
           <li key={post.slug} className="  text-black">
@@ -22,6 +22,6 @@ export default function BlogPage() {
           </li>
         ))}
       </ul>
-    </main>
+    </div>
   );
 }
