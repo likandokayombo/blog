@@ -49,7 +49,7 @@ export const components = {
 
   a: ({ href, children, ...props }: AnchorProps) => {
     const className =
-      "text-blue-600 underline underline-offset-4 decoration-blue-300 hover:decoration-blue-600 transition-colors";
+      "text-blue-600 underline underline-offset-4 decoration-blue-300  transition-colors";
 
     if (href?.startsWith("/")) {
       return (
