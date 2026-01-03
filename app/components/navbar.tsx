@@ -28,12 +28,6 @@ export default function Navbar() {
             >
               About
             </Link>
-            <Link
-              href="/moodboard"
-              className="text-gray-100 hover:text-blue-400 transition-colors font-medium"
-            >
-              Mood Board
-            </Link>
           </div>
 
           {/* Right: GitHub icon */}

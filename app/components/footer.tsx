@@ -11,13 +11,6 @@ export default function Footer() {
           className="text-gray-700 underline decoration-dotted decoration-gray-400"
         >
           CHANGELOG
-        </Link>{" "}
-        ·{" "}
-        <Link
-          href="/moodboard"
-          className="text-gray-700 underline decoration-dotted decoration-gray-400"
-        >
-          MOOD BOARD
         </Link>
       </p>
     </footer>
