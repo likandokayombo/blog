@@ -25,6 +25,7 @@ export default antfu(
     rules: {
       // Next.js recommended rules
       "operator-linebreak": ["error", "after"],
+      "style/operator-linebreak": ["error", "after"],
       ...nextPlugin.configs.recommended.rules,
 
       // Disable problematic stylistic rules for your build

@@ -46,12 +46,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const { frontmatter } = await getMdxContent(slug);
 
+  const description =
+    typeof frontmatter?.description === "string" ? frontmatter.description : "";
+
   return {
     title: typeof frontmatter?.title === "string" ? frontmatter.title : slug,
-    description:
-      typeof frontmatter?.description === "string"
-        ? frontmatter.description
-        : "",
+    description,
   };
 }
 
