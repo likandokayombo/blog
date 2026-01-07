@@ -20,6 +20,7 @@ export const components = {
     ...props
   }: ComponentPropsWithoutRef<"a"> & { href?: string }) => {
     if (href?.startsWith("/")) return <Link href={href}>{children}</Link>;
+
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
         {children}
