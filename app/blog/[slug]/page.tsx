@@ -8,37 +8,46 @@ import { cache } from "react";
 
 import { components } from "@lib/mdx.components";
 
-// ---------------------------------------------
-// 1. Cached MDX loader
-// ---------------------------------------------
+// --------------------
+// 1. MDX loader with typed frontmatter
+// --------------------
+type PostFrontmatter = {
+  title?: string;
+  description?: string;
+  date?: string;
+};
 const getMdxContent = cache(async (slug: string) => {
   const filePath = path.join(process.cwd(), "content/posts", `${slug}.mdx`);
   const source = await fs.readFile(filePath, "utf8");
 
-  return compileMDX({
+  const compiled = await compileMDX({
     source,
     components,
     options: { parseFrontmatter: true },
   });
+
+  // Type frontmatter properly
+  return {
+    content: compiled.content,
+    frontmatter: compiled.frontmatter as PostFrontmatter,
+  };
 });
 
-// ---------------------------------------------
-// 2. Generate static params (SSG)
-// ---------------------------------------------
+// --------------------
+// 2. Generate static params
+// --------------------
 export async function generateStaticParams() {
   const postsDir = path.join(process.cwd(), "content/posts");
   const files = await fs.readdir(postsDir);
 
   return files
-    .filter((file: string) => file.endsWith(".mdx"))
-    .map((file: string) => ({
-      slug: file.replace(".mdx", ""),
-    }));
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => ({ slug: file.replace(".mdx", "") }));
 }
 
-// ---------------------------------------------
-// 3. Metadata (TypeScript-safe)
-// ---------------------------------------------
+// --------------------
+// 3. Metadata
+// --------------------
 export async function generateMetadata({
   params,
 }: {
@@ -48,17 +57,14 @@ export async function generateMetadata({
   const { frontmatter } = await getMdxContent(slug);
 
   return {
-    title: typeof frontmatter?.title === "string" ? frontmatter.title : slug,
-    description:
-      typeof frontmatter?.description === "string"
-        ? frontmatter.description
-        : "",
+    title: frontmatter?.title ?? slug,
+    description: frontmatter?.description ?? "",
   };
 }
 
-// ---------------------------------------------
+// --------------------
 // 4. Page Component
-// ---------------------------------------------
+// --------------------
 export default async function PostPage({
   params,
 }: {
@@ -87,7 +93,7 @@ export default async function PostPage({
         </h4>
       )}
 
-      {/* Rest of content */}
+      {/* MDX content */}
       <div className="mt-10">{content as ReactNode}</div>
     </div>
   );
