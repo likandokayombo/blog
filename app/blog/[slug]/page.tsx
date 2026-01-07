@@ -46,12 +46,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const { frontmatter } = await getMdxContent(slug);
 
-  const description =
-    typeof frontmatter?.description === "string" ? frontmatter.description : "";
-
   return {
     title: typeof frontmatter?.title === "string" ? frontmatter.title : slug,
-    description,
+    description:
+      typeof frontmatter?.description === "string"
+        ? frontmatter.description
+        : "",
   };
 }
 
@@ -64,11 +64,30 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { content } = await getMdxContent(slug);
+  const { content, frontmatter } = await getMdxContent(slug);
 
   return (
-    <div className="max-w-2xl mx-auto py-10 mb-5 text-black px-4">
-      {content}
+    <div className="max-w-2xl mx-auto py-10 text-[#8c92a4] px-4">
+      {/* Title */}
+      {frontmatter?.title && (
+        <h1 className="serif text-white text-3xl md:text-4xl">
+          {frontmatter.title}
+        </h1>
+      )}
+
+      {/* Date */}
+      {frontmatter?.date && (
+        <h4 className="mono text-sm text-[#8c92a4] mt-[25px]">
+          {new Date(frontmatter.date).toLocaleDateString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </h4>
+      )}
+
+      {/* Rest of content */}
+      <div className="mt-10">{content}</div>
     </div>
   );
 }

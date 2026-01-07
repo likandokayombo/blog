@@ -4,17 +4,24 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import Footer from "@components/footer";
-import Navbar from "@components/navbar";
 
-const zalando = localFont({
-  src: [
-    { path: "./fonts/h.woff", weight: "400", style: "normal" },
-    { path: "./fonts/y.woff", weight: "700", style: "normal" },
-  ],
-  variable: "--font-zalando",
+export const instrumentSerif = localFont({
+  src: "./fonts/InstrumentSerif-Regular.ttf",
+  variable: "--serif",
   display: "swap",
 });
 
+export const inter = localFont({
+  src: "./fonts/Inter_18pt-Regular.ttf",
+  variable: "--font-inter",
+  display: "swap",
+});
+
+export const departureMono = localFont({
+  src: "./fonts/DepartureMono-Regular.otf",
+  variable: "--mono",
+  display: "swap",
+});
 export const metadata: Metadata = {
   title: "Likando Kayombo",
   description: "My personal blog.",
@@ -29,11 +36,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={zalando.className}>
-      <body className="bg-[#fefefe] antialiased mb-0 min-h-screen">
+    <html
+      lang="en"
+      className={`${instrumentSerif.variable} ${inter.variable} ${departureMono.variable}`}
+    >
+      <body className="bg-[#181c20] antialiased mb-0 min-h-screen">
         <div className="flex flex-col min-h-screen">
-          <Navbar />
-
           <main className="flex-1 w-full max-w-5xl mx-auto px-4 py-8 pt-24">
             {children}
           </main>

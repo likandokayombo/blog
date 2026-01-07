@@ -24,6 +24,34 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Default site font */
+body {
+  font-family: var(--font-inter);
+}
+
+/* Bold titles */
+h2,
+h3,
+strong {
+  font-family: var(--mono);
+}
+
+h1 {
+  font-family: var(--serif);
+}
+h4 {
+  font-family: var(--mono);
+}
+/* paragraphs */
+p {
+  font-family: var(--font-inter);
+}
+
+/* Code or technical text */
+code,
+pre {
+  font-family: var(--font-jetbrains);
+}
 /* Headings */
 h1,
 h2,
