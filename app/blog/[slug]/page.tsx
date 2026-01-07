@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 import { compileMDX } from "next-mdx-remote/rsc";
 import fs from "node:fs/promises";
@@ -87,7 +88,7 @@ export default async function PostPage({
       )}
 
       {/* Rest of content */}
-      <div className="mt-10">{content}</div>
+      <div className="mt-10">{content as ReactNode}</div>
     </div>
   );
 }

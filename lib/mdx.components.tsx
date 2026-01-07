@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, FC, ReactNode } from "react";
 
 import Link from "next/link";
 import { highlight } from "sugar-high";
@@ -6,7 +6,7 @@ import { highlight } from "sugar-high";
 // ✅ We don’t need date here anymore since PostPage handles it
 export const components = {
   // Remove MDX h1 to prevent duplicate titles
-  h1: () => null,
+  h1: (() => null) as FC, // typed as a functional component
 
   h2: (props: ComponentPropsWithoutRef<"h2">) => <h2 {...props} />,
   h3: (props: ComponentPropsWithoutRef<"h3">) => <h3 {...props} />,
@@ -14,7 +14,11 @@ export const components = {
 
   p: (props: ComponentPropsWithoutRef<"p">) => <p {...props} />,
 
-  a: ({ href, children, ...props }: ComponentPropsWithoutRef<"a">) => {
+  a: ({
+    href,
+    children,
+    ...props
+  }: ComponentPropsWithoutRef<"a"> & { href?: string }) => {
     if (href?.startsWith("/")) return <Link href={href}>{children}</Link>;
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
@@ -23,14 +27,17 @@ export const components = {
     );
   },
 
-  code: ({ children }: ComponentPropsWithoutRef<"code">) => {
-    const codeHTML = highlight(children as string);
-    return <code dangerouslySetInnerHTML={{ __html: codeHTML }} />;
+  code: ({
+    children,
+    ...props
+  }: ComponentPropsWithoutRef<"code"> & { children?: ReactNode }) => {
+    const codeHTML = typeof children === "string" ? highlight(children) : "";
+    return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
   },
 };
 
 export type MDXProvidedComponents = typeof components;
 
-export function useMDXComponents() {
+export function useMDXComponents(): MDXProvidedComponents {
   return components;
 }
