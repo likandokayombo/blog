@@ -11,7 +11,18 @@ export default async function ChangelogPage() {
 
   return (
     <article className="mx-auto py-12 px-4 bg-background text-[#8c92a4] text-sm font-mono">
-      {content}
+      <div className="prose prose-invert max-w-none">
+        {/* Override h2 (MDX ##) to white */}
+        <style>
+          {`
+            .prose h2 {
+              color: #ffffff;
+            }
+          `}
+        </style>
+
+        {content}
+      </div>
     </article>
   );
 }

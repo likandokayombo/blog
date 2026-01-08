@@ -12,16 +12,21 @@ export default function BlogPage() {
     );
 
   return (
-    <div className="bg-background">
-      {/* Hero Section */}
+    <div className="bg-background mt-40">
       <Hero />
 
-      {/* Blog Posts */}
-      <main className="max-w-2xl mx-auto mt-[10px] pt-3 pb-4 px-4">
-        <ul className="space-y-1">
+      <main
+        className="
+          max-w-2xl mx-auto
+          px-4
+          pt-1 pb-3
+          sm:pt-4 sm:pb-6 mt-25
+        "
+      >
+        <ul className="space-y-[2px] sm:space-y-3">
           {posts.map((post) => (
             <li key={post.slug}>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between py-[2px] sm:py-1">
                 <Link
                   href={`/blog/${post.slug}`}
                   className="text-sm font-semibold text-[#8c92a4] hover:text-white transition"
