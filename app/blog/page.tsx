@@ -12,19 +12,19 @@ export default function BlogPage() {
     );
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="bg-background">
       {/* Hero Section */}
       <Hero />
 
-      {/* Main Content grows naturally */}
-      <main className="flex-1 max-w-2xl mx-auto py-10 px-4 sm:px-6">
-        <ul className="space-y-6">
+      {/* Blog Posts */}
+      <main className="max-w-2xl mx-auto mt-[10px] pt-3 pb-4 px-4">
+        <ul className="space-y-1">
           {posts.map((post) => (
             <li key={post.slug}>
               <div className="flex items-center justify-between">
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="text-sm font-semibold text-[#8c92a4] hover:text-white transition-colors duration-200"
+                  className="text-sm font-semibold text-[#8c92a4] hover:text-white transition"
                 >
                   {post.frontmatter.title}
                 </Link>
