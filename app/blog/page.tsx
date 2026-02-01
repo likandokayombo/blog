@@ -15,6 +15,7 @@ export default function BlogPage() {
   const postsByYear = posts.reduce(
     (acc: Record<string, typeof posts>, post) => {
       const year = new Date(post.frontmatter.date).getFullYear().toString();
+      // eslint-disable-next-line antfu/if-newline
       if (!acc[year]) acc[year] = [];
       acc[year].push(post);
       return acc;
