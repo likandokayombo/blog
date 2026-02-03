@@ -44,16 +44,10 @@
     "eslint-plugin-format": "^1.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "prettier": "^3.7.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.css": "prettier --write",
-    "*.md": "prettier --write"
+    "*.{js,ts,jsx,tsx}": "eslint --fix"
   }
 }

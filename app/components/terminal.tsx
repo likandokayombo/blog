@@ -20,18 +20,22 @@ export default function Terminal({
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (visible) inputRef.current?.focus();
+    if (visible)
+      inputRef.current?.focus();
   }, [visible]);
 
   const runCommand = (cmd: string) => {
     const trimmed = cmd.trim();
-    if (!trimmed) return;
+    if (!trimmed)
+      return;
 
     setOutput((prev) => prev.concat(`> ${trimmed}`));
 
-    if (trimmed === "clear") return setOutput([]);
+    if (trimmed === "clear")
+      return setOutput([]);
 
-    if (trimmed === "exit" || trimmed === "q") return onClose();
+    if (trimmed === "exit" || trimmed === "q")
+      return onClose();
 
     if (trimmed === "help") {
       return setOutput((prev) =>
@@ -68,7 +72,8 @@ export default function Terminal({
     setOutput((prev) => prev.concat(`Command not found: ${trimmed}`));
   };
 
-  if (!visible) return null;
+  if (!visible)
+    return null;
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm">
@@ -104,7 +109,8 @@ export default function Terminal({
                 runCommand(command);
                 setCommand("");
               }
-              if (e.key === "Escape") onClose();
+              if (e.key === "Escape")
+                onClose();
             }}
             className="flex-1 bg-transparent outline-none text-sm"
             placeholder="Type a command..."
