@@ -45,8 +45,10 @@ export default function Navbar() {
   const largeArcFlag = angle > Math.PI ? 1 : 0;
   const d =
     progress > 0
-      ? `M 21 21 L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`
-      : "";
+      ? // eslint-disable-next-line style/operator-linebreak, operator-linebreak
+        `M 21 21 L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`
+      : // eslint-disable-next-line style/operator-linebreak, operator-linebreak
+        "";
 
   return (
     <nav className="fixed top-3 left-0 right-0 z-50">
