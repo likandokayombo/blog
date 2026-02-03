@@ -44,7 +44,7 @@ export default function RootLayout({
       <body className="bg-[#181c20] antialiased mb-0 min-h-screen">
         <div className="flex flex-col min-h-screen">
           <main className="flex-1 w-full max-w-5xl mx-auto px-4 py-8">
-            <Navbar />
+            <Navbar posts={[]} changelog={[]} />
             {children}
           </main>
 
