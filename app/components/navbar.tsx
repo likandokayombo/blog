@@ -45,12 +45,8 @@ export default function Navbar() {
   const largeArcFlag = angle > Math.PI ? 1 : 0;
 
   const d = progress
-    ? `M ${CENTER} ${CENTER}
-     L ${x1} ${y1}
-     A ${RADIUS} ${RADIUS} 0 ${largeArcFlag} 1 ${x2} ${y2}
-     Z`
+    ? `M ${CENTER} ${CENTER} L ${x1} ${y1} A ${RADIUS} ${RADIUS} 0 ${largeArcFlag} 1 ${x2} ${y2} Z`
     : null;
-
   return (
     <nav className="fixed top-3 left-0 right-0 z-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
