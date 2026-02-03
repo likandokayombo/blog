@@ -26,6 +26,7 @@ export default function Terminal({
 
   const runCommand = (cmd: string) => {
     const trimmed = cmd.trim();
+
     if (!trimmed)
       return;
 
@@ -50,21 +51,27 @@ export default function Terminal({
     }
 
     if (trimmed.startsWith("posts")) {
-      const k = trimmed.replace("posts", "").trim().toLowerCase();
-      const m = posts.filter((p) => p.title.toLowerCase().includes(k));
+      const keyword = trimmed.replace("posts", "").trim().toLowerCase();
+      const matches = posts.filter((p) =>
+        p.title.toLowerCase().includes(keyword),
+      );
+
       return setOutput((prev) =>
         prev.concat(
-          m.length ? m.map((p) => `POST  ${p.title}`) : "No posts found",
+          matches.length ? matches.map((p) => `POST  ${p.title}`) : "No posts found",
         ),
       );
     }
 
     if (trimmed.startsWith("changelog")) {
-      const k = trimmed.replace("changelog", "").trim().toLowerCase();
-      const m = changelog.filter((c) => c.toLowerCase().includes(k));
+      const keyword = trimmed.replace("changelog", "").trim().toLowerCase();
+      const matches = changelog.filter((c) =>
+        c.toLowerCase().includes(keyword),
+      );
+
       return setOutput((prev) =>
         prev.concat(
-          m.length ? m.map((c) => `LOG   ${c}`) : "No changelog entries found",
+          matches.length ? matches.map((c) => `LOG   ${c}`) : "No changelog entries found",
         ),
       );
     }
@@ -109,6 +116,7 @@ export default function Terminal({
                 runCommand(command);
                 setCommand("");
               }
+
               if (e.key === "Escape")
                 onClose();
             }}

@@ -1,0 +1,2 @@
+//prevent LF/CRLF issues on Windows
+* text=auto
