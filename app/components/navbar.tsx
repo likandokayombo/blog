@@ -17,7 +17,9 @@ export default function Navbar() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (!isBlogPost) return;
+    if (!isBlogPost) {
+      return;
+    }
 
     const onScroll = () => {
       const scrollY = window.scrollY;
@@ -44,9 +46,9 @@ export default function Navbar() {
 
   const d = progress
     ? `M ${CENTER} ${CENTER}
-       L ${x1} ${y1}
-       A ${RADIUS} ${RADIUS} 0 ${largeArcFlag} 1 ${x2} ${y2}
-       Z`
+     L ${x1} ${y1}
+     A ${RADIUS} ${RADIUS} 0 ${largeArcFlag} 1 ${x2} ${y2}
+     Z`
     : null;
 
   return (
