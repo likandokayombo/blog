@@ -47,6 +47,7 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
+
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": "eslint --fix"
   }
