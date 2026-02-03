@@ -19,14 +19,11 @@ export default function Terminal({
   const [output, setOutput] = useState<string[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // ----------------------------
-  // Command runner (stable)
-  // ----------------------------
   const runCommand = useCallback(
     (cmd: string) => {
       const trimmed = cmd.trim();
 
-      setOutput((prev) => [...prev, `:${trimmed}`]);
+      setOutput((prev) => prev.concat(`:${trimmed}`));
 
       if (trimmed === "q" || trimmed === "quit") {
         onClose();
@@ -34,13 +31,14 @@ export default function Terminal({
       }
 
       if (trimmed === "help") {
-        setOutput((prev) => [
-          ...prev,
-          "Commands:",
-          ":posts <keyword>      search blog posts",
-          ":changelog <keyword>  search changelog",
-          ":q                    quit",
-        ]);
+        setOutput((prev) =>
+          prev.concat(
+            "Commands:",
+            ":posts <keyword>      search blog posts",
+            ":changelog <keyword>  search changelog",
+            ":q                    quit",
+          ),
+        );
         return;
       }
 
@@ -52,8 +50,8 @@ export default function Terminal({
 
         setOutput((prev) =>
           matches.length
-            ? [...prev, ...matches.map((p) => `POST  ${p.title}`)]
-            : [...prev, "No posts found"],
+            ? prev.concat(matches.map((p) => `POST  ${p.title}`))
+            : prev.concat("No posts found"),
         );
         return;
       }
@@ -66,23 +64,21 @@ export default function Terminal({
 
         setOutput((prev) =>
           matches.length
-            ? [...prev, ...matches.map((c) => `LOG   ${c}`)]
-            : [...prev, "No changelog entries found"],
+            ? prev.concat(matches.map((c) => `LOG   ${c}`))
+            : prev.concat("No changelog entries found"),
         );
         return;
       }
 
-      setOutput((prev) => [...prev, `Unknown command: ${trimmed}`]);
+      setOutput((prev) => prev.concat(`Unknown command: ${trimmed}`));
     },
     [posts, changelog, onClose],
   );
 
-  // Auto-focus terminal
   useEffect(() => {
     if (visible) containerRef.current?.focus();
   }, [visible]);
 
-  // Key handling (vim-like)
   useEffect(() => {
     if (!visible) return;
 
@@ -104,9 +100,7 @@ export default function Terminal({
         return;
       }
 
-      if (e.key.length === 1) {
-        setCommand((prev) => prev + e.key);
-      }
+      if (e.key.length === 1) setCommand((prev) => prev + e.key);
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -120,15 +114,7 @@ export default function Terminal({
       <div
         ref={containerRef}
         tabIndex={0}
-        className="
-          h-full w-full
-          bg-[#0d0d0d]
-          text-white
-          font-mono
-          p-6
-          outline-none
-          overflow-y-auto
-        "
+        className="h-full w-full bg-[#0d0d0d] text-white font-mono p-6 outline-none overflow-y-auto"
       >
         <div className="space-y-1 mb-4">
           {output.map((line, i) => (
