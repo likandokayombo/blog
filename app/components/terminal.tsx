@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type TerminalProps = {
   posts: { title: string; slug: string }[];
@@ -20,59 +20,62 @@ export default function Terminal({
   const containerRef = useRef<HTMLDivElement>(null);
 
   // ----------------------------
-  // Command runner (DEFINE FIRST)
+  // Command runner (stable)
   // ----------------------------
-  const runCommand = (cmd: string) => {
-    const trimmed = cmd.trim();
+  const runCommand = useCallback(
+    (cmd: string) => {
+      const trimmed = cmd.trim();
 
-    setOutput((prev) => [...prev, `:${trimmed}`]);
+      setOutput((prev) => [...prev, `:${trimmed}`]);
 
-    if (trimmed === "q" || trimmed === "quit") {
-      onClose();
-      return;
-    }
+      if (trimmed === "q" || trimmed === "quit") {
+        onClose();
+        return;
+      }
 
-    if (trimmed === "help") {
-      setOutput((prev) => [
-        ...prev,
-        "Commands:",
-        ":posts <keyword>      search blog posts",
-        ":changelog <keyword>  search changelog",
-        ":q                    quit",
-      ]);
-      return;
-    }
+      if (trimmed === "help") {
+        setOutput((prev) => [
+          ...prev,
+          "Commands:",
+          ":posts <keyword>      search blog posts",
+          ":changelog <keyword>  search changelog",
+          ":q                    quit",
+        ]);
+        return;
+      }
 
-    if (trimmed.startsWith("posts")) {
-      const keyword = trimmed.replace("posts", "").trim().toLowerCase();
-      const matches = posts.filter((p) =>
-        p.title.toLowerCase().includes(keyword),
-      );
+      if (trimmed.startsWith("posts")) {
+        const keyword = trimmed.replace("posts", "").trim().toLowerCase();
+        const matches = posts.filter((p) =>
+          p.title.toLowerCase().includes(keyword),
+        );
 
-      setOutput((prev) =>
-        matches.length
-          ? [...prev, ...matches.map((p) => `POST  ${p.title}`)]
-          : [...prev, "No posts found"],
-      );
-      return;
-    }
+        setOutput((prev) =>
+          matches.length
+            ? [...prev, ...matches.map((p) => `POST  ${p.title}`)]
+            : [...prev, "No posts found"],
+        );
+        return;
+      }
 
-    if (trimmed.startsWith("changelog")) {
-      const keyword = trimmed.replace("changelog", "").trim().toLowerCase();
-      const matches = changelog.filter((c) =>
-        c.toLowerCase().includes(keyword),
-      );
+      if (trimmed.startsWith("changelog")) {
+        const keyword = trimmed.replace("changelog", "").trim().toLowerCase();
+        const matches = changelog.filter((c) =>
+          c.toLowerCase().includes(keyword),
+        );
 
-      setOutput((prev) =>
-        matches.length
-          ? [...prev, ...matches.map((c) => `LOG   ${c}`)]
-          : [...prev, "No changelog entries found"],
-      );
-      return;
-    }
+        setOutput((prev) =>
+          matches.length
+            ? [...prev, ...matches.map((c) => `LOG   ${c}`)]
+            : [...prev, "No changelog entries found"],
+        );
+        return;
+      }
 
-    setOutput((prev) => [...prev, `Unknown command: ${trimmed}`]);
-  };
+      setOutput((prev) => [...prev, `Unknown command: ${trimmed}`]);
+    },
+    [posts, changelog, onClose],
+  );
 
   // Auto-focus terminal
   useEffect(() => {
