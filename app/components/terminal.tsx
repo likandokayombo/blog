@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type TerminalProps = {
   posts: { title: string; slug: string }[];
@@ -17,117 +17,98 @@ export default function Terminal({
 }: TerminalProps) {
   const [command, setCommand] = useState("");
   const [output, setOutput] = useState<string[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const runCommand = useCallback(
-    (cmd: string) => {
-      const trimmed = cmd.trim();
-
-      setOutput((prev) => prev.concat(`:${trimmed}`));
-
-      if (trimmed === "q" || trimmed === "quit") {
-        onClose();
-        return;
-      }
-
-      if (trimmed === "help") {
-        setOutput((prev) =>
-          prev.concat(
-            "Commands:",
-            ":posts <keyword>      search blog posts",
-            ":changelog <keyword>  search changelog",
-            ":q                    quit",
-          ),
-        );
-        return;
-      }
-
-      if (trimmed.startsWith("posts")) {
-        const keyword = trimmed.replace("posts", "").trim().toLowerCase();
-        const matches = posts.filter((p) =>
-          p.title.toLowerCase().includes(keyword),
-        );
-
-        setOutput((prev) =>
-          matches.length
-            ? prev.concat(matches.map((p) => `POST  ${p.title}`))
-            : prev.concat("No posts found"),
-        );
-        return;
-      }
-
-      if (trimmed.startsWith("changelog")) {
-        const keyword = trimmed.replace("changelog", "").trim().toLowerCase();
-        const matches = changelog.filter((c) =>
-          c.toLowerCase().includes(keyword),
-        );
-
-        setOutput((prev) =>
-          matches.length
-            ? prev.concat(matches.map((c) => `LOG   ${c}`))
-            : prev.concat("No changelog entries found"),
-        );
-        return;
-      }
-
-      setOutput((prev) => prev.concat(`Unknown command: ${trimmed}`));
-    },
-    [posts, changelog, onClose],
-  );
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (visible) containerRef.current?.focus();
+    if (visible) inputRef.current?.focus();
   }, [visible]);
 
-  useEffect(() => {
-    if (!visible) return;
+  const runCommand = (cmd: string) => {
+    const trimmed = cmd.trim();
+    if (!trimmed) return;
 
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-        return;
-      }
+    setOutput((prev) => prev.concat(`> ${trimmed}`));
 
-      if (e.key === "Enter") {
-        runCommand(command);
-        setCommand("");
-        e.preventDefault();
-        return;
-      }
+    if (trimmed === "clear") return setOutput([]);
 
-      if (e.key === "Backspace") {
-        setCommand((prev) => prev.slice(0, -1));
-        return;
-      }
+    if (trimmed === "exit" || trimmed === "q") return onClose();
 
-      if (e.key.length === 1) setCommand((prev) => prev + e.key);
-    };
+    if (trimmed === "help") {
+      return setOutput((prev) =>
+        prev.concat(
+          "Available commands:",
+          "posts <keyword>",
+          "changelog <keyword>",
+          "clear",
+          "exit / q",
+        ),
+      );
+    }
 
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [command, visible, runCommand, onClose]);
+    if (trimmed.startsWith("posts")) {
+      const k = trimmed.replace("posts", "").trim().toLowerCase();
+      const m = posts.filter((p) => p.title.toLowerCase().includes(k));
+      return setOutput((prev) =>
+        prev.concat(
+          m.length ? m.map((p) => `POST  ${p.title}`) : "No posts found",
+        ),
+      );
+    }
+
+    if (trimmed.startsWith("changelog")) {
+      const k = trimmed.replace("changelog", "").trim().toLowerCase();
+      const m = changelog.filter((c) => c.toLowerCase().includes(k));
+      return setOutput((prev) =>
+        prev.concat(
+          m.length ? m.map((c) => `LOG   ${c}`) : "No changelog entries found",
+        ),
+      );
+    }
+
+    setOutput((prev) => prev.concat(`Command not found: ${trimmed}`));
+  };
 
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm">
-      <div
-        ref={containerRef}
-        tabIndex={0}
-        className="h-full w-full bg-[#0d0d0d] text-white font-mono p-6 outline-none overflow-y-auto"
-      >
-        <div className="space-y-1 mb-4">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm">
+      <div className="absolute bottom-6 left-1/2 w-[90%] max-w-4xl -translate-x-1/2 rounded-lg bg-[#0d0d0d] text-white shadow-xl font-mono">
+        {/* Header */}
+        <div className="flex items-center justify-between px-4 py-2 border-b border-white/10">
+          <span className="text-sm opacity-80">Terminal</span>
+          <button
+            type="button"
+            onClick={onClose}
+            className="text-sm opacity-60 hover:opacity-100"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Output */}
+        <div className="max-h-80 overflow-y-auto px-4 py-3 space-y-1 text-sm">
           {output.map((line, i) => (
-            <div key={i} className="text-sm">
-              {line}
-            </div>
+            <div key={i}>{line}</div>
           ))}
         </div>
 
-        <div className="flex items-center">
-          <span className="text-orange-500 mr-2">:</span>
-          <span>{command}</span>
-          <span className="ml-1 animate-pulse">▌</span>
+        {/* Input */}
+        <div className="flex items-center gap-2 px-4 py-2 border-t border-white/10">
+          <span className="text-orange-400">$</span>
+          <input
+            ref={inputRef}
+            value={command}
+            onChange={(e) => setCommand(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                runCommand(command);
+                setCommand("");
+              }
+              if (e.key === "Escape") onClose();
+            }}
+            className="flex-1 bg-transparent outline-none text-sm"
+            placeholder="Type a command..."
+          />
         </div>
       </div>
     </div>
