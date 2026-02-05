@@ -77,7 +77,7 @@ export default async function PostPage({
     <div className="max-w-2xl mx-auto py-10 text-[#8c92a4] px-4 mt-20">
       {/* Title */}
       {frontmatter?.title && (
-        <h1 className="text-white text-3xl md:text-4xl">
+        <h1 className="text-white text-[5rem] md:text-[5rem] lg:text-[6rem] leading-tight">
           {frontmatter.title}
         </h1>
       )}
