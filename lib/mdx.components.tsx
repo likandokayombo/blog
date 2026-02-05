@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef, FC, ReactNode } from "react";
 
+import Image from "next/image";
 import Link from "next/link";
 import { highlight } from "sugar-high";
 
@@ -22,35 +23,46 @@ export const components = {
     </h4>
   ),
 
+  /* ✅ Links with icon */
   a: ({
     href,
     children,
     ...props
   }: ComponentPropsWithoutRef<"a"> & { href?: string }) => {
-    const className =
-      "text-[#3c93ff] underline underline-offset-4 hover:opacity-80 transition";
+    const baseClass =
+      "text-[#3c93ff]  hover:opacity-80 transition inline-flex items-center gap-1";
 
+    // Internal link (relative)
     if (href?.startsWith("/")) {
       return (
-        <Link href={href} className={className}>
+        <Link href={href} className={baseClass}>
           {children}
         </Link>
       );
     }
 
+    // External link: add icon
     return (
       <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={className}
+        className={baseClass}
         {...props}
       >
         {children}
+        <Image
+          src="/icons/Vector.svg"
+          alt="custom icon"
+          width={10}
+          height={10}
+          className="inline-block white"
+        />
       </a>
     );
   },
 
+  /* ✅ Inline code */
   code: ({
     children,
     ...props
