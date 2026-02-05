@@ -74,10 +74,10 @@ export default async function PostPage({
   const { content, frontmatter } = await getMdxContent(slug);
 
   return (
-    <div className="max-w-2xl mx-auto py-10 text-[#8c92a4] px-4">
+    <div className="max-w-2xl mx-auto py-10 text-[#8c92a4] px-4 mt-20">
       {/* Title */}
       {frontmatter?.title && (
-        <h1 className="serif text-white text-3xl md:text-4xl">
+        <h1 className="text-white text-3xl md:text-4xl">
           {frontmatter.title}
         </h1>
       )}

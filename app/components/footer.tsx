@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mt-12 text-center text-xs text-gray-500">
+      <div className="mt-12 mr-50 text-xs text-gray-500">
         © {year}. <span className="text-gray-400">Likando Kayombo</span>
       </div>
     </footer>
