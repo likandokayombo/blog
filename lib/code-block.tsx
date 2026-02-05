@@ -1,15 +1,15 @@
 "use client";
 
-import type { Language, PrismTheme, Token } from "prism-react-renderer";
+import type { Language, PrismTheme } from "prism-react-renderer";
 
 import { Highlight } from "prism-react-renderer";
 import { useState } from "react";
 
-// Minimal VSCode-like theme (typed correctly)
+// Dark theme
 const darkTheme: PrismTheme = {
   plain: {
-    color: "#d4d4d4",
-    backgroundColor: "#1e1e1e",
+    color: "#F24405", // orange text
+    backgroundColor: "#0b1c2d", // dark blue background
   },
   styles: [
     { types: ["keyword", "selector"], style: { color: "#569CD6" } },
@@ -23,17 +23,10 @@ const darkTheme: PrismTheme = {
 type CodeBlockProps = {
   children: string;
   language?: Language;
+  className?: string;
 };
 
-type HighlightRenderProps = {
-  className: string;
-  style: React.CSSProperties;
-  tokens: Token[][];
-  getLineProps: (input: { line: Token[]; key: number }) => React.HTMLAttributes<HTMLDivElement>;
-  getTokenProps: (input: { token: Token; key: number }) => React.HTMLAttributes<HTMLSpanElement>;
-};
-
-export default function CodeBlock({ children, language = "tsx" }: CodeBlockProps) {
+export default function CodeBlock({ children, language = "tsx", className }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -43,49 +36,46 @@ export default function CodeBlock({ children, language = "tsx" }: CodeBlockProps
   };
 
   return (
-    <div className="relative group my-4 rounded-lg border border-gray-700 overflow-hidden">
+    <div
+      className={`relative group my-4 rounded-lg border border-gray-700 overflow-hidden ${
+        className ?? ""
+      }`}
+    >
       {/* Copy button */}
       <button
         onClick={handleCopy}
-        className="absolute top-2 right-2 z-10 rounded bg-gray-800 px-2 py-1 text-xs text-white opacity-0 transition group-hover:opacity-100 hover:bg-gray-700"
+        className="absolute top-2 right-2 z-10 rounded bg-gray-800 px-2 py-1 text-xs text-yellow opacity-0 transition group-hover:opacity-100 hover:bg-gray-700"
       >
         {copied ? "Copied!" : "Copy"}
       </button>
 
       <Highlight code={children.trim()} language={language} theme={darkTheme}>
-        {(props: HighlightRenderProps) => {
-          const { className, style, tokens, getLineProps, getTokenProps } = props;
+        {({ className: codeClass, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={`overflow-x-auto p-4 text-sm font-mono ${codeClass}`} style={style}>
+            {tokens.map((line, lineIndex) => {
+              // Get line props WITHOUT passing key
+              const lineProps = getLineProps({ line });
 
-          return (
-            <pre
-              className={`overflow-x-auto bg-[#1e1e1e] p-4 text-sm font-mono ${className}`}
-              style={style}
-            >
-              {tokens.map((line, index) => {
-                const lineProps = getLineProps({ line, key: index });
+              return (
+                <div key={lineIndex} {...lineProps} className="flex">
+                  {/* Line numbers */}
+                  <span className="mr-4 w-8 select-none text-right text-gray-500">
+                    {lineIndex + 1}
+                  </span>
 
-                return (
-                  <div key={index} {...lineProps} className="flex">
-                    {/* Line numbers */}
-                    <span className="mr-4 w-8 select-none text-right text-gray-500">
-                      {index + 1}
-                    </span>
-
-                    {/* Code */}
-                    <span className="flex-1">
-                      {line.map((token, tokenIndex) => (
-                        <span
-                          key={tokenIndex}
-                          {...getTokenProps({ token, key: tokenIndex })}
-                        />
-                      ))}
-                    </span>
-                  </div>
-                );
-              })}
-            </pre>
-          );
-        }}
+                  {/* Tokens */}
+                  <span className="flex-1">
+                    {line.map((token, tokenIndex) => {
+                      // Get token props WITHOUT passing key
+                      const tokenProps = getTokenProps({ token });
+                      return <span key={tokenIndex} {...tokenProps} />;
+                    })}
+                  </span>
+                </div>
+              );
+            })}
+          </pre>
+        )}
       </Highlight>
     </div>
   );
