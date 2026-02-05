@@ -44,7 +44,7 @@ export default function CodeBlock({ children, language = "tsx", className }: Cod
       {/* Copy button */}
       <button
         onClick={handleCopy}
-        className="absolute top-2 right-2 z-10 rounded bg-gray-800 px-2 py-1 text-xs text-yellow opacity-0 transition group-hover:opacity-100 hover:bg-gray-700"
+        className="absolute top-2 right-2 z-10 rounded bg-gray-800 px-2 py-1 text-xs text-yellow-400 hover:bg-gray-700"
       >
         {copied ? "Copied!" : "Copy"}
       </button>
