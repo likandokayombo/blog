@@ -11,9 +11,15 @@ import MDXImage from "./mdx-image";
  * Extract text content from ReactNode for pattern matching
  */
 function extractText(node: ReactNode): string {
-  if (typeof node === "string") return node;
-  if (typeof node === "number") return String(node);
-  if (Array.isArray(node)) return node.map(extractText).join("");
+  if (typeof node === "string") {
+    return node;
+  }
+  if (typeof node === "number") {
+    return String(node);
+  }
+  if (Array.isArray(node)) {
+    return node.map(extractText).join("");
+  }
   if (node && typeof node === "object" && "props" in node) {
     return extractText((node as { props: { children?: ReactNode } }).props.children);
   }
@@ -25,7 +31,7 @@ function extractText(node: ReactNode): string {
  */
 function hasColorTag(children: ReactNode): boolean {
   const text = extractText(children);
-  return /-\[#([a-fA-F0-9]{3,6})\]/.test(text);
+  return /-\[#[a-f0-9]{3,6}\]/i.test(text);
 }
 
 /**
