@@ -45,7 +45,7 @@ export const components = {
     const colorTag = hasColorTag(props.children);
     return (
       <h2
-        className={`mt-10 mb-4 text-2xl font-semibold${colorTag ? " font-[Inter] font-bold" : ""}`}
+        className={`mt-10 mb-4 text-2xl font-semibold${colorTag ? " text-white font-[Inter] font-bold" : ""}`}
         {...props}
       />
     );
@@ -55,7 +55,7 @@ export const components = {
     const colorTag = hasColorTag(props.children);
     return (
       <h3
-        className={`mt-8 mb-3 text-xl font-semibold${colorTag ? " font-[Inter] font-bold" : ""}`}
+        className={`mt-8 mb-3 text-xl font-semibold${colorTag ? " text-white font-[Inter] font-bold" : ""}`}
         {...props}
       />
     );
@@ -65,7 +65,7 @@ export const components = {
     const colorTag = hasColorTag(props.children);
     return (
       <h4
-        className={`mt-6 mb-2 text-lg font-semibold text-[#ffcc00]${colorTag ? " font-[Inter] font-bold" : ""}`}
+        className={`mt-6 mb-2 text-lg font-semibold${colorTag ? " text-white font-[Inter] font-bold" : " text-[#ffcc00]"}`}
         {...props}
       />
     );
