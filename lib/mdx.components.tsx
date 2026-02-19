@@ -8,23 +8,62 @@ import CodeBlock from "./code-block";
 import MDXImage from "./mdx-image";
 
 /**
+ * Extract text content from ReactNode for pattern matching
+ */
+function extractText(node: ReactNode): string {
+  if (typeof node === "string") return node;
+  if (typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(extractText).join("");
+  if (node && typeof node === "object" && "props" in node) {
+    return extractText((node as { props: { children?: ReactNode } }).props.children);
+  }
+  return "";
+}
+
+/**
+ * Check if content contains a color tag pattern like -[#fffff]
+ */
+function hasColorTag(children: ReactNode): boolean {
+  const text = extractText(children);
+  return /-\[#([a-fA-F0-9]{3,6})\]/.test(text);
+}
+
+/**
  * MDX custom components
  */
 export const components = {
   // Prevent duplicate title rendering
   h1: (() => null) as FC,
 
-  h2: (props: ComponentPropsWithoutRef<"h2">) => (
-    <h2 className="mt-10 mb-4 text-2xl font-semibold" {...props} />
-  ),
+  h2: (props: ComponentPropsWithoutRef<"h2">) => {
+    const colorTag = hasColorTag(props.children);
+    return (
+      <h2
+        className={`mt-10 mb-4 text-2xl font-semibold${colorTag ? " font-[Inter] font-bold" : ""}`}
+        {...props}
+      />
+    );
+  },
 
-  h3: (props: ComponentPropsWithoutRef<"h3">) => (
-    <h3 className="mt-8 mb-3 text-xl font-semibold" {...props} />
-  ),
+  h3: (props: ComponentPropsWithoutRef<"h3">) => {
+    const colorTag = hasColorTag(props.children);
+    return (
+      <h3
+        className={`mt-8 mb-3 text-xl font-semibold${colorTag ? " font-[Inter] font-bold" : ""}`}
+        {...props}
+      />
+    );
+  },
 
-  h4: (props: ComponentPropsWithoutRef<"h4">) => (
-    <h4 className="mt-6 mb-2 text-lg font-semibold text-[#ffcc00]" {...props} />
-  ),
+  h4: (props: ComponentPropsWithoutRef<"h4">) => {
+    const colorTag = hasColorTag(props.children);
+    return (
+      <h4
+        className={`mt-6 mb-2 text-lg font-semibold text-[#ffcc00]${colorTag ? " font-[Inter] font-bold" : ""}`}
+        {...props}
+      />
+    );
+  },
 
   p: (props: ComponentPropsWithoutRef<"p">) => (
     <p className="leading-7 my-4" {...props} />
