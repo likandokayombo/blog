@@ -32,21 +32,21 @@ export default function BlogPage() {
           .sort((a, b) => Number(b) - Number(a)) // latest year first
           .map((year) => (
             <div key={year} className="mb-7 mt-7 w-full">
-              {/* Centered Year heading */}
-              <h2 className="text-lg font-bold mb-3  text-[#8c92a4] text-center">
+              {/* Year heading - left on mobile, center on desktop */}
+              <h2 className="text-lg font-bold mb-3 text-[#8c92a4] md:text-center text-left">
                 {year}
               </h2>
 
-              {/* Posts list */}
-              <ul className="space-y-[2px] sm:space-y-3 flex flex-col items-center w-full">
+              {/* Posts list - left aligned on mobile, centered on desktop */}
+              <ul className="space-y-[2px] sm:space-y-3 flex flex-col items-start md:items-center w-full">
                 {postsByYear[year].map((post) => (
                   <li key={post.slug} className="w-full">
                     <div className="pb-5 w-full">
-                      <div className="flex justify-center items-center w-full md:w-auto md:mx-auto gap-4">
-                        {/* Post title */}
+                      <div className="flex flex-col md:flex-row justify-start md:justify-center items-start md:items-center gap-1 md:gap-4 w-full">
+                        {/* Post title - left on mobile, center on desktop */}
                         <Link
                           href={`/blog/${post.slug}`}
-                          className="text-sm text-[#8c92a4] hover:text-white transition text-center"
+                          className="text-sm text-[#8c92a4] hover:text-white transition md:text-center text-left"
                         >
                           {post.frontmatter.title}
                         </Link>
