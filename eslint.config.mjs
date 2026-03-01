@@ -31,6 +31,7 @@ export default antfu(
       // Disable problematic stylistic rules for your build
       "style/arrow-parens": "off",
       "style/jsx-one-expression-per-line": "off",
+      "style/indent": "off",
 
       // Existing custom rules
       "ts/no-redeclare": "off",
