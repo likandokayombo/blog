@@ -351,9 +351,9 @@ export default function Terminal({
         return;
       }
 
-      const i = historyIndex === null
-        ? history.length - 1
-        : Math.max(0, historyIndex - 1);
+      const i = historyIndex === null ?
+        history.length - 1 :
+        Math.max(0, historyIndex - 1);
 
       setHistoryIndex(i);
       setCommand(history[i]);
@@ -413,18 +413,18 @@ export default function Terminal({
                     className="block text-left text-blue-400 hover:underline"
                   >
                     {title.split(/(▌.*?▐)/g).map((part, j) =>
-                      part.startsWith("▌")
-                        ? (
-                            <span
-                              key={j}
-                              className="bg-yellow-400/30 text-yellow-300"
-                            >
-                              {part.replace(/▌|▐/g, "")}
-                            </span>
-                          )
-                        : (
-                            <span key={j}>{part}</span>
-                          ),
+                      part.startsWith("▌") ?
+                        (
+                          <span
+                            key={j}
+                            className="bg-yellow-400/30 text-yellow-300"
+                          >
+                            {part.replace(/▌|▐/g, "")}
+                          </span>
+                        ) :
+                        (
+                          <span key={j}>{part}</span>
+                        ),
                     )}
                     {matchType === "CONTENT" && (
                       <span className="text-xs text-gray-500 ml-2">[content match]</span>
@@ -433,18 +433,18 @@ export default function Terminal({
                   {matchType === "CONTENT" && snippet && (
                     <div className="text-gray-400 text-xs pl-4 border-l-2 border-gray-600">
                       {snippet.split(/(▌.*?▐)/g).map((part, j) =>
-                        part.startsWith("▌")
-                          ? (
-                              <span
-                                key={j}
-                                className="bg-yellow-400/30 text-yellow-300"
-                              >
-                                {part.replace(/▌|▐/g, "")}
-                              </span>
-                            )
-                          : (
-                              <span key={j}>{part}</span>
-                            ),
+                        part.startsWith("▌") ?
+                          (
+                            <span
+                              key={j}
+                              className="bg-yellow-400/30 text-yellow-300"
+                            >
+                              {part.replace(/▌|▐/g, "")}
+                            </span>
+                          ) :
+                          (
+                            <span key={j}>{part}</span>
+                          ),
                       )}
                     </div>
                   )}
@@ -455,18 +455,18 @@ export default function Terminal({
             return (
               <div key={i}>
                 {line.split(/(▌.*?▐)/g).map((part, j) =>
-                  part.startsWith("▌")
-                    ? (
-                        <span
-                          key={j}
-                          className="bg-yellow-400/30 text-yellow-300"
-                        >
-                          {part.replace(/▌|▐/g, "")}
-                        </span>
-                      )
-                    : (
-                        <span key={j}>{part}</span>
-                      ),
+                  part.startsWith("▌") ?
+                    (
+                      <span
+                        key={j}
+                        className="bg-yellow-400/30 text-yellow-300"
+                      >
+                        {part.replace(/▌|▐/g, "")}
+                      </span>
+                    ) :
+                    (
+                      <span key={j}>{part}</span>
+                    ),
                 )}
               </div>
             );
