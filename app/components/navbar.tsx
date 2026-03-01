@@ -7,11 +7,10 @@ import { useState } from "react";
 import Terminal from "@components/terminal";
 
 type NavbarProps = {
-  posts: { title: string; slug: string }[];
   changelog: string[];
 };
 
-export default function Navbar({ posts, changelog }: NavbarProps) {
+export default function Navbar({ changelog }: NavbarProps) {
   const [terminalVisible, setTerminalVisible] = useState(false);
   return (
     <>
@@ -55,7 +54,6 @@ export default function Navbar({ posts, changelog }: NavbarProps) {
       </nav>
       {/* Terminal Panel */}
       <Terminal
-        posts={posts}
         changelog={changelog}
         onClose={() => setTerminalVisible(false)}
         visible={terminalVisible}
