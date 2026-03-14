@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://blog-likando-kayombo.vercel.app/sitemap.xml",
+    sitemap: "https://blog.likandokayombo.com/sitemap.xml",
   };
 }

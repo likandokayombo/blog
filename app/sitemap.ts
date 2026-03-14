@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { getAllPosts } from "@lib/mdx";
 
-const siteUrl = "https://blog-likando-kayombo.vercel.app";
+const siteUrl = "https://blog.likandokayombo.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
