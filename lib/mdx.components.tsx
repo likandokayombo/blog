@@ -144,7 +144,8 @@ export const components = {
     // Block code
     if (typeof children !== "string")
       return null;
-    return <CodeBlock>{children}</CodeBlock>;
+    const language = className?.replace(/language-/, "") || "tsx";
+    return <CodeBlock language={language}>{children}</CodeBlock>;
   },
 
   /**
