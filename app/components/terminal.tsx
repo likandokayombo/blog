@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -387,10 +388,13 @@ export default function Terminal({
       <div className="absolute bottom-6 left-1/2 w-[90%] max-w-4xl -translate-x-1/2 rounded-lg bg-[#0d0d0d] text-white font-mono shadow-xl">
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-2 border-b border-white/10">
-          <span className="text-sm opacity-80">Terminal</span>
-          <button onClick={onClose} className="opacity-60 hover:opacity-100">
-            ✕
-          </button>
+          <Image src="/icons/terminal.svg" alt="Terminal" width={18} height={18} className="opacity-80" />
+          <div className="flex items-center gap-4">
+            <span className="text-xs opacity-50">Q to close or Esc, clear</span>
+            <button onClick={onClose} className="opacity-60 hover:opacity-100">
+              ✕
+            </button>
+          </div>
         </div>
 
         {/* Output */}
