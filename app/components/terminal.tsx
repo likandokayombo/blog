@@ -385,7 +385,7 @@ export default function Terminal({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm">
-      <div className="absolute bottom-6 left-1/2 w-[90%] max-w-4xl -translate-x-1/2 rounded-lg bg-[#0d0d0d] text-white font-mono shadow-xl">
+      <div className="absolute bottom-6 left-1/2 w-[90%] max-w-4xl -translate-x-1/2 rounded-sm bg-[#0d0d0d] text-white font-mono shadow-xl border border-[#c37d0d]">
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-2 border-b border-white/10">
           <Image src="/icons/terminal.svg" alt="Terminal" width={18} height={18} className="opacity-80" />
