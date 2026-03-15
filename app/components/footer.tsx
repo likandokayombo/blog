@@ -37,31 +37,33 @@ export default function Footer() {
 
   return (
     <footer className="mt-auto w-full border-t border-gray-800 px-6 py-12 text-gray-400">
-      <div className="mx-auto max-w-6xl">
-        <h3 className="text-lg font-bold text-white">Links</h3>
+      <div className="mx-auto flex max-w-6xl flex-col md:flex-row md:justify-between">
+        <div>
+          <h3 className="text-lg font-bold text-white">Links</h3>
 
-        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
-          {links.map(({ label, href, external }) => (
-            <Link
-              key={label}
-              href={href}
-              target={external ? "_blank" : undefined}
-              className="group"
-            >
-              <h4 className="flex items-center gap-1 text-sm text-gray-400 transition hover:text-white">
-                {label}
+          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+            {links.map(({ label, href, external }) => (
+              <Link
+                key={label}
+                href={href}
+                target={external ? "_blank" : undefined}
+                className="group"
+              >
+                <h4 className="flex items-center gap-1 text-sm text-gray-400 transition hover:text-white">
+                  {label}
 
-                {(external || label === "Changelog") && (
-                  <OpenInNewIcon className="ml-1 text-gray-400 opacity-70 group-hover:text-white group-hover:opacity-100" />
-                )}
-              </h4>
-            </Link>
-          ))}
+                  {(external || label === "Changelog") && (
+                    <OpenInNewIcon className="ml-1 text-gray-400 opacity-70 group-hover:text-white group-hover:opacity-100" />
+                  )}
+                </h4>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className="mt-12 mr-50 text-xs text-gray-500">
-        © {year}. <span className="text-gray-400">Likando Kayombo</span>
+        <div className="mt-8 md:mt-0 md:self-end text-xs text-gray-500">
+          © {year}. <span className="text-gray-400">Likando Kayombo</span>
+        </div>
       </div>
     </footer>
   );
