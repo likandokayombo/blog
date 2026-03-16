@@ -37,9 +37,7 @@ export default function CodeBlock({ children, language = "tsx", className }: Cod
 
   return (
     <div
-      className={`relative group my-4 rounded-lg border border-gray-700 overflow-hidden ${
-        className ?? ""
-      }`}
+      className={`relative group my-4 rounded-lg border border-gray-700 ${className ?? ""}`}
     >
       {/* Copy button */}
       <button
@@ -51,30 +49,31 @@ export default function CodeBlock({ children, language = "tsx", className }: Cod
 
       <Highlight code={children.trim()} language={language} theme={darkTheme}>
         {({ className: codeClass, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={`overflow-x-auto p-4 text-sm font-mono ${codeClass}`} style={style}>
-            {tokens.map((line, lineIndex) => {
-              // Get line props WITHOUT passing key
-              const lineProps = getLineProps({ line });
+          <div className="flex overflow-x-auto">
+            {/* Line numbers - fixed */}
+            <div className="flex-shrink-0 p-2 sm:p-4 text-xs sm:text-sm font-mono text-right select-none bg-[#0b1c2d]">
+              {tokens.map((_, lineIndex) => (
+                <div key={lineIndex} className="w-6 sm:w-8 text-gray-500">
+                  {lineIndex + 1}
+                </div>
+              ))}
+            </div>
 
-              return (
-                <div key={lineIndex} {...lineProps} className="flex">
-                  {/* Line numbers */}
-                  <span className="mr-4 w-8 select-none text-right text-gray-500">
-                    {lineIndex + 1}
-                  </span>
-
-                  {/* Tokens */}
-                  <span className="flex-1">
+            {/* Code content - scrollable */}
+            <pre className="flex-1 overflow-x-auto p-2 sm:p-4 text-xs sm:text-sm font-mono whitespace-nowrap" style={style}>
+              {tokens.map((line, lineIndex) => {
+                const lineProps = getLineProps({ line });
+                return (
+                  <div key={lineIndex} {...lineProps}>
                     {line.map((token, tokenIndex) => {
-                      // Get token props WITHOUT passing key
                       const tokenProps = getTokenProps({ token });
                       return <span key={tokenIndex} {...tokenProps} />;
                     })}
-                  </span>
-                </div>
-              );
-            })}
-          </pre>
+                  </div>
+                );
+              })}
+            </pre>
+          </div>
         )}
       </Highlight>
     </div>
