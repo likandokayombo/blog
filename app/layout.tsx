@@ -27,6 +27,12 @@ export const metadata: Metadata = {
   title: "Likando Kayombo",
   description: "My personal blog.",
   alternates: { canonical: "/" },
+  icons: {
+    icon: "/favicon.png",
+  },
+  openGraph: {
+    images: ["/opengraph-image.png"],
+  },
 };
 
 export { useMDXComponents } from "@lib/mdx.components";

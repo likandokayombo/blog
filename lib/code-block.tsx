@@ -48,7 +48,7 @@ export default function CodeBlock({ children, language = "tsx", className }: Cod
       </button>
 
       <Highlight code={children.trim()} language={language} theme={darkTheme}>
-        {({ className: codeClass, style, tokens, getLineProps, getTokenProps }) => (
+        {({ className: _codeClass, style, tokens, getLineProps, getTokenProps }) => (
           <div className="flex overflow-x-auto">
             {/* Line numbers - fixed */}
             <div className="flex-shrink-0 p-2 sm:p-4 text-xs sm:text-sm font-mono text-right select-none bg-[#0b1c2d]">
