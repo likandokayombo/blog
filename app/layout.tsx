@@ -24,12 +24,9 @@ export const departureMono = localFont({
   display: "swap",
 });
 export const metadata: Metadata = {
-  title: "Likando Kayombo",
-  description: "My personal blog.",
+  title: "Likando Kayombo Personal Blog",
+  description: " I explore posts and stories about web development, UI design, and other topics i find interesting",
   alternates: { canonical: "/" },
-  icons: {
-    icon: "/favicon.png",
-  },
   openGraph: {
     images: ["/opengraph-image.png"],
   },
