@@ -11,6 +11,7 @@
       "@/*": ["./*"],
       "@app/*": ["app/*"],
       "@components/*": ["app/components/*"],
+      "@features/*": ["app/features/*"],
       "@lib/*": ["lib/*"]
     },
     "resolveJsonModule": true,
