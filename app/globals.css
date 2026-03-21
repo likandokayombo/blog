@@ -1,6 +1,9 @@
 @import "tailwindcss";
 :root {
-  /* Prevent horizontal scroll globally */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   box-sizing: border-box;
 }
