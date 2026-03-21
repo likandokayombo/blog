@@ -3,6 +3,9 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@lib/mdx";
 
 const siteUrl = "https://blog.likandokayombo.com";
+const lastModified = new Date();
+
+export const revalidate = 3600;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
@@ -10,25 +13,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${siteUrl}/blog`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${siteUrl}/about`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${siteUrl}/changelog`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.5,
     },
