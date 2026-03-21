@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || "https://blog.likandokayombo.com"}/sitemap.xml`,
+    sitemap: "https://blog.likandokayombo.com/sitemap.xml",
   };
 }
