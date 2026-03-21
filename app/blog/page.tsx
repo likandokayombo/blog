@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { getAllPosts } from "@lib/mdx";
+
 import Hero from "../features/hero";
 
 export default function BlogPage() {
