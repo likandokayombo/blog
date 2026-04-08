@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import Hero from "@features/hero";
 import { getAllPosts } from "@lib/mdx";
