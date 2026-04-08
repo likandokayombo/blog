@@ -41,12 +41,7 @@ export default antfu(
       "node/prefer-global/process": "off",
       "node/no-process-env": "error",
 
-      "perfectionist/sort-imports": [
-        "error",
-        {
-          tsconfigRootDir: ".",
-        },
-      ],
+      "perfectionist/sort-imports": "off",
 
       "unicorn/filename-case": [
         "error",
