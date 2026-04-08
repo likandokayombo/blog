@@ -21,7 +21,9 @@ export default function HomePage() {
   const postsByYear = posts.reduce(
     (acc: Record<string, typeof posts>, post) => {
       const year = new Date(post.frontmatter.date).getFullYear().toString();
-      if (!acc[year]) acc[year] = [];
+      if (!acc[year]) {
+        acc[year] = [];
+      }
       acc[year].push(post);
       return acc;
     },
