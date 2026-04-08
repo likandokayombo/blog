@@ -1,7 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import Hero from "@features/hero";
 import { getAllPosts } from "@lib/mdx";
+
+export const metadata: Metadata = {
+  title: "Blog - Likando Kayombo",
+  description: "Read my posts and stories about web development, UI design, and other topics I find interesting.",
+  alternates: {
+    canonical: "/blog",
+  },
+};
 
 export default function BlogPage() {
   const posts = getAllPosts();

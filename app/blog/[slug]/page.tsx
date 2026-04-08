@@ -59,6 +59,9 @@ export async function generateMetadata({
   return {
     title: frontmatter?.title ?? slug,
     description: frontmatter?.description ?? "",
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
   };
 }
 

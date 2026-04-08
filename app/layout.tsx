@@ -26,7 +26,6 @@ export const departureMono = localFont({
 export const metadata: Metadata = {
   title: "Likando Kayombo Personal Blog",
   description: " I explore posts and stories about web development, UI design, and other topics i find interesting",
-  alternates: { canonical: "/" },
   openGraph: {
     images: ["/opengraph-image.png"],
   },
