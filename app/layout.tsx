@@ -24,9 +24,14 @@ export const departureMono = localFont({
   display: "swap",
 });
 export const metadata: Metadata = {
+  metadataBase: new URL("https://blog.likandokayombo.com"),
+  keywords: ["Raycast on windows", "UI/UX", "Frontend development", "Likando Kayombo Personal Blog"],
   title: "Likando Kayombo Personal Blog",
-  description: " I explore posts and stories about web development, UI design, and other topics i find interesting",
+  description: "I explore posts and stories about web development, UI design, and other topics i find interesting",
+
   openGraph: {
+    title: "Likando Kayombo Personal Blog",
+    description: "I explore posts and stories about web development, UI design, and other topics I find interesting",
     images: ["/opengraph-image.png"],
   },
 };

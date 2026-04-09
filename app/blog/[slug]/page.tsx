@@ -7,6 +7,7 @@ import path from "node:path";
 import { cache } from "react";
 
 import { components } from "@lib/mdx.components";
+import { getPostBySlug } from "@lib/mdx";
 
 // --------------------
 // 1. MDX loader with typed frontmatter
@@ -53,16 +54,35 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const { frontmatter } = await getMdxContent(slug);
+  try {
+    const { slug } = await params;
+    const post = getPostBySlug(slug);
 
-  return {
-    title: frontmatter?.title ?? slug,
-    description: frontmatter?.description ?? "",
-    alternates: {
-      canonical: `/blog/${slug}`,
-    },
-  };
+    if (!post?.frontmatter?.title) {
+      return {
+        title: "Not Found",
+        description: "The page you are looking for does not exist",
+      };
+    }
+
+    return {
+      title: post.frontmatter.title,
+      description: post.frontmatter.description ?? "",
+      alternates: {
+        canonical: `/blog/${slug}`,
+      },
+      openGraph: {
+        title: post.frontmatter.title,
+        description: post.frontmatter.description ?? "",
+        images: post.frontmatter.image ? [post.frontmatter.image] : [],
+      },
+    };
+  } catch {
+    return {
+      title: "Not Found",
+      description: "The page you are looking for does not exist",
+    };
+  }
 }
 
 // --------------------
