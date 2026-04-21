@@ -30,7 +30,7 @@ export default function Footer() {
     },
     {
       label: "Twitter",
-      href: "https://twitter.com",
+      href: "https://twitter.com/likandokayombo",
       external: true,
     },
   ];
