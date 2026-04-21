@@ -25,12 +25,12 @@ export default function Footer() {
     { label: "Changelog", href: "/changelog" },
     {
       label: "Source Code",
-      href: "https://github.com/likandokayombo",
+      href: "https://github.com/likandokayombo/blog",
       external: true,
     },
     {
       label: "Twitter",
-      href: "https://twitter.com",
+      href: "https://twitter.com/likandokayombo",
       external: true,
     },
   ];
