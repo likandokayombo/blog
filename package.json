@@ -17,7 +17,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/mdx": "^2.0.13",
     "gray-matter": "^4.0.3",
-    "next": "15.5.14",
+    "next": "16.2.4",
     "next-mdx-remote": "^6.0.0",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.0.0",
