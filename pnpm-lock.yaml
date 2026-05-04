@@ -19,7 +19,7 @@ importers:
         version: 16.0.7(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.2.7)(react@19.2.1))
       '@tailwindcss/typography':
         specifier: ^0.5.19
-        version: 0.5.19(tailwindcss@4.1.17)
+        version: 0.5.19(tailwindcss@4.2.4)
       '@types/mdx':
         specifier: ^2.0.13
         version: 2.0.13
@@ -89,7 +89,7 @@ importers:
         version: 16.2.7
       tailwindcss:
         specifier: ^4
-        version: 4.1.17
+        version: 4.2.4
       typescript:
         specifier: ^5
         version: 5.9.3
@@ -2365,6 +2365,9 @@ packages:
   tailwindcss@4.1.17:
     resolution: {integrity: sha512-j9Ee2YjuQqYT9bbRTfTZht9W/ytp5H+jJpZKiYdP/bpnXARAuELt9ofP0lPnmHjbga7SNQIxdTAXCmtKVYjN+Q==}
 
+  tailwindcss@4.2.4:
+    resolution: {integrity: sha512-HhKppgO81FQof5m6TEnuBWCZGgfRAWbaeOaGT00KOy/Pf/j6oUihdvBpA7ltCeAvZpFhW3j0PTclkxsd4IXYDA==}
+
   tapable@2.3.0:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
     engines: {node: '>=6'}
@@ -3070,10 +3073,10 @@ snapshots:
       postcss: 8.5.6
       tailwindcss: 4.1.17
 
-  '@tailwindcss/typography@0.5.19(tailwindcss@4.1.17)':
+  '@tailwindcss/typography@0.5.19(tailwindcss@4.2.4)':
     dependencies:
       postcss-selector-parser: 6.0.10
-      tailwindcss: 4.1.17
+      tailwindcss: 4.2.4
 
   '@types/debug@4.1.12':
     dependencies:
@@ -5117,6 +5120,8 @@ snapshots:
       '@pkgr/core': 0.2.9
 
   tailwindcss@4.1.17: {}
+
+  tailwindcss@4.2.4: {}
 
   tapable@2.3.0: {}
 
