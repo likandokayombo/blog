@@ -15,14 +15,14 @@
       "@lib/*": ["lib/*"]
     },
     "resolveJsonModule": true,
+    "types": ["jest", "@testing-library/jest-dom"],
     "allowJs": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "plugins": [{ "name": "next" }],
-    "types": ["jest", "@testing-library/jest-dom"]
+    "plugins": [{ "name": "next" }]
   },
   "include": [
     "next-env.d.ts",
