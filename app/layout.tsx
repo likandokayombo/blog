@@ -34,6 +34,9 @@ export const metadata: Metadata = {
     description: "I explore posts and stories about web development, UI design, and other topics I find interesting",
     images: ["/opengraph-image.png"],
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export { useMDXComponents } from "@lib/mdx.components";
