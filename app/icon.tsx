@@ -12,8 +12,8 @@ export const contentType = "image/png";
 
 // Image generation
 export default async function Icon() {
-  // Read the existing favicon.ico file from the app directory
-  const faviconPath = join(process.cwd(), "app", "favicon.ico");
+  // Read the existing favicon.ico file from the public directory
+  const faviconPath = join(process.cwd(), "public", "favicon.ico");
   const faviconBuffer = await readFile(faviconPath);
 
   // Convert the file to a base64 data URL
