@@ -3,7 +3,7 @@ name: autofix.ci
 on:
   pull_request:
   push:
-    branches: ["main"]
+    branches: [main]
 
 permissions:
   contents: write
@@ -13,24 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
-        with:
-          token: ${{ secrets.AUTOFIX_PAT }}
+      - uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@c336a2788d9774dccfdeb4823a5058ccc9f07453 # v4.3.0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: 20
-          cache: "pnpm"
+          cache: pnpm
 
       - run: pnpm install
 
       - run: pnpm lint:fix
 
-      - uses: stefanzweifel/git-auto-commit-action@v7
+      - uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7.1.0
         with:
           commit_message: "style: auto-fix lint issues"
-          commit_user_name: Likando Kayomboe
-          commit_user_email: likandokayombo2030@gmail.com
-          commit_author: Likando Kayomboe <likandokayombo2030@gmail.com>
