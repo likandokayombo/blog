@@ -1,0 +1,36 @@
+name: autofix.ci
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.AUTOFIX_PAT }}
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - run: pnpm install
+
+      - run: pnpm lint:fix
+
+      - uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "style: auto-fix lint issues"
+          commit_user_name: Likando Kayomboe
+          commit_user_email: likandokayombo2030@gmail.com
+          commit_author: Likando Kayomboe <likandokayombo2030@gmail.com>
