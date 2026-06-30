@@ -1,5 +1,29 @@
 
 ## v0.4
+
+#### Added
+- Comprehensive favicon configuration with multiple sizes for better browser compatibility
+- Standard favicons: 16×16, 32×32, 96×96, and any-size ICO fallback
+- Apple touch icons: 180×180 (standard + precomposed variants)
+- Shortcut icon fallback for legacy browser support
+
+#### Fixed
+- Browser history/bookmark letter overlay fallback by providing explicit favicon sizes
+- ESLint formatting issues in `app/layout.tsx` (indentation consistency)
+
+#### Changed
+- Updated `app/layout.tsx` metadata.icons to reference all favicon variants in `/public/favicons/`
+
+## v0.4.1
+
+#### Fixed
+- pnpm lockfile corruption causing Vercel build failures
+- Missing `@mdx-js/loader` dependency in lockfile
+- Dependency resolution issues with `pnpm install --no-frozen-lockfile`
+
+#### Changed
+- Regenerated `pnpm-lock.yaml` for clean dependency tree
+
 -  Life before I tried Raycast(article).
 - i wrote Things you should consider(article).
 - fixed render MDX images inline to prevent hydration errors.
