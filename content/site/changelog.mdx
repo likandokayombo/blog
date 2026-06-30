@@ -1,61 +1,77 @@
 
-## v0.4
+## v0.4.2
 
-#### Added
-- Comprehensive favicon configuration with multiple sizes for better browser compatibility
-- Standard favicons: 16×16, 32×32, 96×96, and any-size ICO fallback
-- Apple touch icons: 180×180 (standard + precomposed variants)
-- Shortcut icon fallback for legacy browser support
+### Added
+- Comprehensive favicon configuration with multiple sizes for better browser compatibility:
+  - Standard favicons: 16×16, 32×32, 96×96, and any-size ICO fallback
+  - Apple touch icons: 180×180 (standard + precomposed variants)
+  - Shortcut icon fallback for legacy browser support
 
-#### Fixed
+### Fixed
 - Browser history/bookmark letter overlay fallback by providing explicit favicon sizes
 - ESLint formatting issues in `app/layout.tsx` (indentation consistency)
 
-#### Changed
-- Updated `app/layout.tsx` metadata.icons to reference all favicon variants in `/public/favicons/`
+### Changed
+- Updated `app/layout.tsx` `metadata.icons` to reference all favicon variants in `/public/favicons/`
+
+---
 
 ## v0.4.1
 
-#### Fixed
-- pnpm lockfile corruption causing Vercel build failures
+### Fixed
+- `pnpm-lock.yaml` corruption causing Vercel build failures
 - Missing `@mdx-js/loader` dependency in lockfile
 - Dependency resolution issues with `pnpm install --no-frozen-lockfile`
 
-#### Changed
-- Regenerated `pnpm-lock.yaml` for clean dependency tree
+### Changed
+- Regenerated `pnpm-lock.yaml` for a clean dependency tree
 
--  Life before I tried Raycast(article).
-- i wrote Things you should consider(article).
-- fixed render MDX images inline to prevent hydration errors.
-- added image support in mdx files.
--  added a copy button on the code block.
-- added custom color on quoted mdx posts. 
-- added a custom svg icon on all mdx links.
-- introduced code block theme like in a coding editor for code highlight snippets.
-- introduced terminal.
--  when if *help* is clicked availble commands appear.
-- created  a fancy navbar.
-- added some weird logo.
-- Added responsive Hero component with background image and overlay text.
-- Adjusted spacing between Hero, main content, and Footer.
-- Reduced spacing on mobile for blog posts.
-- Updated Footer links with inline SVG icon.
-- Made blog posts list tighter and easier to read.
-- Updated layout.tsx for proper min-height and flex behavior.
-- Minor styling improvements (margins, paddings, font sizes).
+### Added / Improved
+- New articles:
+  - *Life before I tried Raycast*
+  - *Things you should consider*
+- Render MDX images inline to prevent hydration errors
+- Image support in MDX files
+- Copy button on code blocks
+- Custom quote styling for MDX posts
+- Custom SVG icon on all MDX links
+- Code block theme styled like a coding editor (syntax highlight snippets)
+- Terminal component
+  - When `help` is clicked, available commands appear
+- Fancy navbar + logo updates
+- Responsive Hero component with background image and overlay text
+- Layout + spacing refinements:
+  - Adjusted spacing between Hero, main content, and Footer
+  - Reduced spacing on mobile for blog posts
+  - Made blog posts list tighter and easier to read
+  - Updated Footer links with inline SVG icon
+  - Updated `layout.tsx` for proper min-height and flex behavior
+  - Minor styling improvements (margins, paddings, font sizes)
 
-## v0.3  
-- made changes to work on mobile.
-- fixed UI bugs.
-- i changed the entire Ul.
-- Some new feature.
-- Updated footer.
-- Minor bug fixes.
+---
 
-## v0.2 
-- First blog post *elina-under-different-skies*.
-- bug fix.
-- Ul fix.
+## v0.3.0
 
-## v0.1 
-- init
+### Changed
+- Mobile-first improvements
+- UI bug fixes
+- Major UI changes
+
+### Added
+- Footer updates
+- Minor features
+
+---
+
+## v0.2.0
+
+### Added
+- First blog post: *elina-under-different-skies*
+
+### Fixed
+- UI / styling bugs
+
+---
+
+## v0.1.0
+- Init
