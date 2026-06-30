@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description: "I explore posts and stories about web development, UI design, and other topics I find interesting",
     images: ["/opengraph-image.png"],
   },
-icons: {
+  icons: {
     icon: [
       { url: "/favicons/favicon.ico", sizes: "any" },
       { url: "/favicons/favicon-16x16.png", sizes: "16x16" },
