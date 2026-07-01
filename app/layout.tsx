@@ -34,19 +34,6 @@ export const metadata: Metadata = {
     description: "I explore posts and stories about web development, UI design, and other topics I find interesting",
     images: ["/opengraph-image.png"],
   },
-  icons: {
-    icon: [
-      { url: "/favicons/favicon.ico", sizes: "any" },
-      { url: "/favicons/favicon-16x16.png", sizes: "16x16" },
-      { url: "/favicons/favicon-32x32.png", sizes: "32x32" },
-      { url: "/favicons/favicon-96x96.png", sizes: "96x96" },
-    ],
-    apple: [
-      { url: "/favicons/apple-icon.png", sizes: "180x180" },
-      { url: "/favicons/apple-icon-180x180.png", sizes: "180x180" },
-    ],
-    shortcut: "/favicons/favicon.ico",
-  },
 };
 
 export { useMDXComponents } from "@lib/mdx.components";
