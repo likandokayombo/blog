@@ -139,4 +139,30 @@ table {
   h2 {
     font-size: 1.5rem;
   }
+
+  .changelog-mdx > * + * {
+    margin-top: 1rem;
+  }
+
+  .changelog-mdx h2 {
+    margin: 2rem 0 0.75rem;
+  }
+
+  .changelog-mdx h3,
+  .changelog-mdx h4 {
+    margin: 1.25rem 0 0.5rem;
+  }
+
+  .changelog-mdx ul,
+  .changelog-mdx ol {
+    margin: 0.75rem 0;
+  }
+
+  .changelog-mdx li + li {
+    margin-top: 0.35rem;
+  }
+
+  .changelog-mdx hr {
+    margin: 2rem 0;
+  }
 }
