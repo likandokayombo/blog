@@ -8,7 +8,7 @@ export default function Hero() {
             <br />
             a process
           </h1>
-          <p className="mt-8 text-lg text-[#8c92a4] max-w-xl mx-auto leading-relaxed">
+          <p className="mt-9 text-lg text-[#8c92a4] max-w-xl mx-auto leading-relaxed">
             Hello, I&apos;m Likando, this my blog where I explore posts and
             stories about web development and other topics i find
             interesting
