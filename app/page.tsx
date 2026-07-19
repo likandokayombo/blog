@@ -31,10 +31,10 @@ export default function HomePage() {
   );
 
   return (
-    <div className="bg-background mt-40">
+    <div className="bg-background">
       <Hero />
 
-      <main className="max-w-2xl mx-auto px-4 pt-1 pb-3 sm:pt-4 sm:pb-6 mt-25">
+      <main className="max-w-2xl mx-auto px-4 pt-1 pb-3 sm:pt-4 sm:pb-6">
         {Object.keys(postsByYear)
           .sort((a, b) => Number(b) - Number(a))
           .map((year) => (

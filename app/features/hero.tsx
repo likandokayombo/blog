@@ -1,13 +1,19 @@
 export default function Hero() {
   return (
-    <section className="w-full h-[10vh]  flex items-center justify-center px-4">
-      <div className="text-center max-w-2xl">
-        <h1 className="text-white sm:text-5xl font-bold mb-20">Learning is</h1>
-        <h1 className="text-white sm:text-5xl font-bold mx-40">a process</h1>
-        <p className="text-sm sm:text-lg text-white  text-center mt-5">
-          Hello, i'm Likando this my blog where I explore posts and stories
-          about web development, UI design, and other topics i find interesting
-        </p>
+    <section className="min-h-0 md:min-h-screen flex items-center justify-center mt-[70px] mb-[60px] md:mt-[7px] md:mb-[15px]">
+      <div className="mx-auto max-w-7xl w-full px-6 md:px-10">
+        <div className="max-w-4xl mx-auto text-center md:text-center">
+          <h1 className="text-white text-6xl xl:text-8xl font-semibold tracking-tight leading-[0.95]">
+            Learning is
+            <br />
+            a process
+          </h1>
+          <p className="mt-8 text-lg text-neutral-500 max-w-xl mx-auto leading-relaxed">
+            Hello, i&apos;m Likando, this my blog where I explore posts and
+            stories about web development and other topics i find
+            interesting
+          </p>
+        </div>
       </div>
     </section>
   );
