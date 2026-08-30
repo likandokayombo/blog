@@ -4,6 +4,9 @@ import path from "node:path";
 
 const CHANGELOG_PATH = path.join(process.cwd(), "content/site/changelog.mdx");
 
+/**
+ * Changelog page component displaying project updates
+ */
 export default async function ChangelogPage() {
   const source = await fs.readFile(CHANGELOG_PATH, "utf8");
 

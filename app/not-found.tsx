@@ -1,5 +1,8 @@
 import Link from "next/link";
 
+/**
+ * 404 Not Found page component
+ */
 export default function NotFound() {
   return (
     <section className="w-full h-[60vh] flex items-center justify-center px-4 text-center">

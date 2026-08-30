@@ -7,6 +7,12 @@ import Image from "next/image";
 
 type MDXImageProps = ComponentPropsWithoutRef<"img">;
 
+/**
+ * Image component for MDX content with optimized loading
+ * @param props - Component props
+ * @param props.src - Image source URL
+ * @param props.alt - Alternative text for accessibility
+ */
 export default function MDXImage({ src, alt }: MDXImageProps) {
   if (!src)
     return null;

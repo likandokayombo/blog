@@ -10,9 +10,17 @@ export const metadata: Metadata = {
   description: "I explore posts and stories about web development, UI design, and other topics I find interesting.",
 };
 
+/**
+ * Homepage component displaying blog posts grouped by year
+ */
 export default function HomePage() {
   const posts = getAllPosts();
 
+  /**
+   * Format a date string to display month and day
+   * @param date - ISO date string
+   * @returns Formatted date string
+   */
   const formatDate = (date: string) =>
     new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(
       new Date(date),

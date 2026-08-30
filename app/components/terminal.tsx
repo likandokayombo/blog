@@ -19,6 +19,13 @@ type TerminalProps = {
 const COMMANDS = ["posts", "changelog", "open", "help", "clear", "exit", "q"];
 const HISTORY_KEY = "terminal-history";
 
+/**
+ * Interactive terminal component for searching posts and changelog
+ * @param props - Component props
+ * @param props.changelog - Array of changelog entries
+ * @param props.visible - Whether the terminal is visible
+ * @param props.onClose - Callback to close the terminal
+ */
 export default function Terminal({
   changelog,
   visible,
@@ -84,6 +91,12 @@ export default function Terminal({
   }, [command]);
 
   /* --------------------------- highlight utility ----------------------------- */
+  /**
+   * Highlight keyword matches in text with special markers
+   * @param text - Text to search in
+   * @param keyword - Keyword to highlight
+   * @returns Text with highlighted matches
+   */
   const highlight = (text: string, keyword: string) => {
     if (!keyword) {
       return text;
@@ -94,6 +107,12 @@ export default function Terminal({
   };
 
   /* --------------------------- get snippet utility --------------------------- */
+  /**
+   * Extract a snippet of content around a keyword match
+   * @param content - Full content to extract from
+   * @param keyword - Keyword to find and center snippet around
+   * @returns Extracted snippet with ellipses
+   */
   const getSnippet = (content: string, keyword: string): string => {
     const contentLower = content.toLowerCase();
     const keywordLower = keyword.toLowerCase();
@@ -123,6 +142,10 @@ export default function Terminal({
   };
 
   /* ------------------------------ run command -------------------------------- */
+  /**
+   * Execute a terminal command
+   * @param raw - Raw command string entered by user
+   */
   const runCommand = useCallback(
     (raw: string) => {
       const trimmed = raw.trim();
@@ -335,6 +358,10 @@ export default function Terminal({
   );
 
   /* ----------------------------- keyboard input ------------------------------ */
+  /**
+   * Handle keyboard input for terminal
+   * @param e - Keyboard event
+   */
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       runCommand(command);

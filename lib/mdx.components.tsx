@@ -169,6 +169,10 @@ export const components = {
 
 export type MDXProvidedComponents = typeof components;
 
+/**
+ * Hook to provide MDX custom components
+ * @returns Custom MDX components for rendering
+ */
 export function useMDXComponents(): MDXProvidedComponents {
   return components;
 }

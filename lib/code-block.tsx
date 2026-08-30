@@ -26,9 +26,19 @@ type CodeBlockProps = {
   className?: string;
 };
 
+/**
+ * Code block component with syntax highlighting and copy functionality
+ * @param props - Component props
+ * @param props.children - The code content to display
+ * @param props.language - Programming language for syntax highlighting
+ * @param props.className - Additional CSS classes
+ */
 export default function CodeBlock({ children, language = "tsx", className }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
 
+  /**
+   * Handle copying code to clipboard
+   */
   const handleCopy = async () => {
     await navigator.clipboard.writeText(children);
     setCopied(true);

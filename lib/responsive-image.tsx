@@ -10,6 +10,16 @@ type ResponsiveImageProps = ComponentPropsWithoutRef<"img"> & {
   title?: string; // optional caption
 };
 
+/**
+ * Responsive image component with optional caption
+ * @param props - Component props
+ * @param props.src - Image source URL
+ * @param props.alt - Alternative text for accessibility
+ * @param props.width - Image width for aspect ratio calculation
+ * @param props.height - Image height for aspect ratio calculation
+ * @param props.title - Optional caption text
+ * @param props.className - Additional CSS classes
+ */
 export default function ResponsiveImage({
   src,
   alt,

@@ -1,3 +1,6 @@
+/**
+ * Hero section component for the homepage
+ */
 export default function Hero() {
   return (
     <section className="min-h-0 md:min-h-screen flex items-center justify-center mt-[70px] mb-[60px] md:mt-[7px] md:mb-[15px]">
