@@ -3,9 +3,17 @@ import Link from "next/link";
 import Hero from "@features/hero";
 import { getAllPosts } from "@lib/mdx";
 
+/**
+ * Blog listing page displaying all posts grouped by year
+ */
 export default function BlogPage() {
   const posts = getAllPosts();
 
+  /**
+   * Format a date string to display month and day
+   * @param date - ISO date string
+   * @returns Formatted date string
+   */
   const formatDate = (date: string) =>
     new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(
       new Date(date),

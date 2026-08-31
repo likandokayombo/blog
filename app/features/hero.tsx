@@ -1,3 +1,6 @@
+/**
+ * Hero section component for the homepage
+ */
 export default function Hero() {
   return (
     <section className="min-h-0 md:min-h-screen flex items-center justify-center mt-[70px] mb-[60px] md:mt-[7px] md:mb-[15px]">
@@ -9,8 +12,8 @@ export default function Hero() {
             a process
           </h1>
           <p className="mt-9 text-lg text-[#8c92a4] max-w-xl mx-auto leading-relaxed">
-            Hello, I&apos;m Likando, this my blog where I explore posts and
-            stories about web development and other topics i find
+            Hello, I&apos;m Likando, this is my blog where I explore posts and
+            stories about web development and other topics I find
             interesting
           </p>
         </div>

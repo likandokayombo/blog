@@ -4,6 +4,10 @@ import { getAllPosts } from "@lib/mdx";
 
 const siteUrl = "https://blog.likandokayombo.com";
 
+/**
+ * Generate sitemap for search engines
+ * @returns Array of sitemap entries for all pages and posts
+ */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = getAllPosts();
 

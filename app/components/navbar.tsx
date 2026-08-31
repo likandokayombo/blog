@@ -10,6 +10,11 @@ type NavbarProps = {
   changelog: string[];
 };
 
+/**
+ * Navigation bar component with terminal toggle
+ * @param props - Component props
+ * @param props.changelog - Array of changelog entries for the terminal
+ */
 export default function Navbar({ changelog }: NavbarProps) {
   const [terminalVisible, setTerminalVisible] = useState(false);
   return (

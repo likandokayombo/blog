@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-// Inline your local open_in_new.svg
+/**
+ * Icon component for external links
+ * @param props - Component props
+ * @param props.className - Additional CSS classes
+ */
 function OpenInNewIcon({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -17,6 +21,9 @@ function OpenInNewIcon({ className = "" }: { className?: string }) {
   );
 }
 
+/**
+ * Footer component with navigation links and copyright
+ */
 export default function Footer() {
   const year = new Date().getFullYear();
 

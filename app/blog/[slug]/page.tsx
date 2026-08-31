@@ -17,6 +17,12 @@ type PostFrontmatter = {
   description?: string;
   date?: string;
 };
+
+/**
+ * Load and compile MDX content for a post
+ * @param slug - Post slug
+ * @returns Compiled MDX content and frontmatter
+ */
 const getMdxContent = cache(async (slug: string) => {
   const filePath = path.join(process.cwd(), "content/posts", `${slug}.mdx`);
   const source = await fs.readFile(filePath, "utf8");
@@ -37,6 +43,10 @@ const getMdxContent = cache(async (slug: string) => {
 // --------------------
 // 2. Generate static params
 // --------------------
+/**
+ * Generate static params for all blog posts
+ * @returns Array of slug parameters for static generation
+ */
 export async function generateStaticParams() {
   const postsDir = path.join(process.cwd(), "content/posts");
   const files = await fs.readdir(postsDir);
@@ -49,6 +59,12 @@ export async function generateStaticParams() {
 // --------------------
 // 3. Metadata
 // --------------------
+/**
+ * Generate metadata for a blog post
+ * @param props - Component props
+ * @param props.params - Route parameters containing the slug
+ * @returns Metadata object for the post
+ */
 export async function generateMetadata({
   params,
 }: {
@@ -89,6 +105,11 @@ export async function generateMetadata({
 // --------------------
 // 4. Page Component
 // --------------------
+/**
+ * Blog post page component
+ * @param props - Component props
+ * @param props.params - Route parameters containing the slug
+ */
 export default async function PostPage({
   params,
 }: {

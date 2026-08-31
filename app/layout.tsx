@@ -51,6 +51,11 @@ export const metadata: Metadata = {
 
 export { useMDXComponents } from "@lib/mdx.components";
 
+/**
+ * Root layout component for the entire application
+ * @param props - Component props
+ * @param props.children - Child components to render
+ */
 export default function RootLayout({
   children,
 }: {

@@ -10,7 +10,10 @@ export const size = {
 
 export const contentType = "image/png";
 
-// Image generation
+/**
+ * Generate the site icon/favicon
+ * @returns ImageResponse for the favicon
+ */
 export default async function Icon() {
   // Read the existing favicon.ico file from the public directory
   const faviconPath = join(process.cwd(), "public", "favicon.ico");
