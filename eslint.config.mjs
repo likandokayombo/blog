@@ -12,6 +12,7 @@ export default antfu(
       "convex/**",
       ".agents/skills/**",
       ".config/opencode/skills/**",
+      "LICENSE**",
     ],
 
     stylistic: {
