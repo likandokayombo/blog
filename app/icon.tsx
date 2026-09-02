@@ -35,6 +35,7 @@ export default async function Icon() {
           background: "transparent",
         }}
       >
+        {/* eslint-disable-next-line next/no-img-element */}
         <img
           src={faviconDataUrl}
           alt="Favicon"
