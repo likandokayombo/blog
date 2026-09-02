@@ -10,6 +10,8 @@ export default antfu(
 
     ignores: [
       "convex/**",
+      ".agents/skills/**",
+      ".config/opencode/skills/**",
     ],
 
     stylistic: {
@@ -47,7 +49,7 @@ export default antfu(
         "error",
         {
           case: "kebabCase",
-          ignore: ["README.md"],
+          ignore: ["README.md", "AGENTS.md"],
         },
       ],
     },
