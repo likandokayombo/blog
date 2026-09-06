@@ -1,0 +1,278 @@
+---
+title: "How to pull the latest commits from the main repository into your fork"
+date: "2026-09-05"
+---
+
+Git usually calls your fork `origin`.
+
+The original repository is commonly called `upstream`.
+
+So the basic idea is:
+
+`origin` → your fork
+`upstream` → original repository
+
+This allows you to fetch changes from the original repository while pushing your own changes to your fork.
+
+## Check your current remotes
+
+First, check which remote repositories are configured:
+
+```bash
+git remote -v
+```
+
+In my case, I initially had:
+
+```plaintext
+origin  https://github.com/likandokayombo/smilefxtraders-fork.git (fetch)
+origin  https://github.com/likandokayombo/smilefxtraders-fork.git (push)
+```
+
+This showed that `origin` was pointing to my fork. However, there was no `upstream` remote configured.
+
+## Check your current branch
+
+I also checked which branch I was currently working on:
+
+```bash
+git branch --show-current
+```
+
+Output:
+
+```plaintext
+changes
+```
+
+This is important because the branch you're currently on is the branch that will receive the changes when you merge `upstream/main`.
+
+## Add the original repository as upstream
+
+Since I knew the URL of the original repository, I added it as an `upstream` remote:
+
+```bash
+git remote add upstream https://github.com/kondwanimuwowo/smilefxtraders.git
+```
+
+Now, running `git remote -v` outputs:
+
+```plaintext
+origin    https://github.com/likandokayombo/smilefxtraders-fork.git (fetch)
+origin    https://github.com/likandokayombo/smilefxtraders-fork.git (push)
+upstream  https://github.com/kondwanimuwowo/smilefxtraders.git (fetch)
+upstream  https://github.com/kondwanimuwowo/smilefxtraders.git (push)
+```
+
+Now Git knows about both repositories.
+
+## Fetch the latest changes from the original repository
+
+Next, fetch the latest commits from the original repository:
+
+```bash
+git fetch upstream
+```
+
+This downloads the latest commits from the original repository.
+
+> Note: `git fetch` does not automatically merge those commits into your current branch. It simply updates your local knowledge of the upstream repository.
+
+After fetching, Git will have a reference to the original repository's `main` branch: `upstream/main`.
+
+You can check your branches with:
+
+```bash
+git branch -a
+```
+
+You should see something similar to:
+
+```plaintext
+* changes
+  main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+  remotes/upstream/main
+```
+
+The important part is `remotes/upstream/main`. That represents the latest `main` branch from the original repository.
+
+## Merge the latest upstream changes
+
+Since I was working on the `changes` branch, I could now merge the latest changes from the original repository into my branch:
+
+```bash
+git merge upstream/main
+```
+
+This tells Git: "Take the latest `main` branch from the original repository and merge it into my current branch."
+
+If everything goes smoothly, Git will complete the merge. You might see:
+
+```plaintext
+Updating 7b30648..abc1234
+Fast-forward
+```
+
+Or:
+
+```plaintext
+Merge made by the 'ort' strategy.
+```
+
+At this point, my `changes` branch contains the latest changes from `upstream/main`.
+
+## What if there are merge conflicts?
+
+Sometimes your branch and the original repository have modified the same lines of code. In that situation, Git may report a conflict:
+
+```plaintext
+CONFLICT (content): Merge conflict in app/page.tsx
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+First, check which files have conflicts:
+
+```bash
+git status
+```
+
+Then open the conflicted files. You may see something like:
+
+```plaintext
+<<<<<<< HEAD
+Your changes
+=======
+Changes from upstream
+>>>>>>> upstream/main
+```
+
+Resolve the conflicts, stage the files, and complete the merge:
+
+```bash
+git add .
+git commit
+```
+
+## Push the updated branch to your fork
+
+Once the merge is complete, push your branch to your GitHub fork:
+
+```bash
+git push origin changes
+```
+
+Now your fork contains your branch with the latest changes from the original repository.
+
+## The complete workflow
+
+You only need to configure `upstream` once:
+
+```bash
+git remote add upstream https://github.com/kondwanimuwowo/smilefxtraders.git
+```
+
+After that, whenever the original repository receives new commits, your daily workflow is simple:
+
+```bash
+git switch changes
+git fetch upstream
+git merge upstream/main
+git push origin changes
+```
+
+## What if I want to update my fork's main branch?
+
+There is a difference between updating your feature branch and updating your fork's `main` branch.
+
+If you want your fork's `main` branch to contain the latest changes from the original repository:
+
+```bash
+git switch main
+git fetch upstream
+git merge upstream/main
+git push origin main
+```
+
+The workflow looks like this:
+
+```plaintext
+Original repository
+       |
+       | git fetch upstream
+       v
+upstream/main
+       |
+       | git merge upstream/main
+       v
+local main
+       |
+       | git push origin main
+       v
+your fork's main
+```
+
+## Merge vs Rebase
+
+Another option is to use rebase instead of merge:
+
+```bash
+git switch changes
+git fetch upstream
+git rebase upstream/main
+```
+
+Rebase takes your commits and places them on top of the latest commits from `upstream/main`.
+
+Before:
+
+```plaintext
+A---B---C  upstream/main
+     \
+      D---E  changes
+```
+
+After rebase:
+
+```plaintext
+A---B---C---D'---E'  changes
+```
+
+This gives you a cleaner, linear Git history. However, be careful when rebasing a branch that has already been pushed and shared with other developers.
+
+For a simple fork workflow, merging is often easier.
+
+## Summary
+
+The key concepts to remember:
+
+`origin` = my fork
+`upstream` = original repository
+
+```plaintext
+        Original repository (upstream/main)
+                      |
+                      | git fetch upstream
+                      v
+                Local repository
+                      |
+                      | git merge upstream/main
+                      v
+               Your changes branch
+                      |
+                      | git push origin changes
+                      v
+               Your GitHub fork (origin/changes)
+```
+
+For my `smilefxtraders` setup, every time I want to sync my working branch, I run:
+
+```bash
+git switch changes
+git fetch upstream
+git merge upstream/main
+git push origin changes
+```
+
+Once `upstream` is configured, keeping your fork synchronized with the original repository becomes a straightforward Git workflow.
