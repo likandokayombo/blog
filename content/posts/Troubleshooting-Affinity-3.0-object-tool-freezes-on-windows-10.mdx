@@ -1,0 +1,240 @@
+---
+title: "Troubleshooting Affinity 3.0 Object Tool Freezes on Windows 10"
+date: "2026-09-12"
+---
+
+Affinity 3.0 kept freezing on my Windows 10 machine whenever I selected or used the **Object Tool**. The window would show **Not Responding**, and the only option was to force-close the app.
+
+Before you go reinstalling, there are a few things worth trying.
+
+On newer Windows installations, Affinity may also not appear in the traditional **Control Panel → Programs and Features** list. Depending on how it was installed, it may instead be managed through Windows Settings.
+
+## Where Affinity keeps its settings
+
+Affinity stores application data in different locations depending on how it was installed.
+
+Common locations include:
+
+- `%APPDATA%`
+- `%LOCALAPPDATA%`
+- `C:\Users\<Your-Username>\.affinity\`
+
+On my Windows 10 installation, the Affinity 3.0 configuration directory is:
+
+```text
+C:\Users\DELL\.affinity\Affinity\3.0\
+```
+
+Your username will be different if you're using another Windows account.
+
+Inside the `3.0` directory, you may see folders and files such as:
+
+```text
+AffinityFonts
+autosave
+backup
+CrashReports
+EBWebView
+LensProfiles
+Plugins
+printing
+profiles
+Samples
+Settings
+temp
+temp-critical
+user
+Workspaces
+preferences.dat
+```
+
+## Force-close Affinity
+
+If Affinity is showing **Not Responding**, force-close it through Task Manager.
+
+1. Press `Ctrl + Shift + Esc` to open **Task Manager**.
+2. Find **Affinity** under the running processes.
+3. Right-click Affinity.
+4. Select **End task**.
+
+Wait a few seconds before launching Affinity again.
+
+## Reset Affinity's settings
+
+If the Object Tool continues to freeze, a corrupted preference file may be worth ruling out.
+
+Make sure Affinity is completely closed before changing anything.
+
+Navigate to:
+
+```text
+C:\Users\<Your-Username>\.affinity\Affinity\3.0\
+```
+
+### Back up the Settings folder
+
+Locate `Settings`, right-click it, and select **Rename**.
+
+Rename it to:
+
+```text
+Settings.old
+```
+
+Do not delete the folder. Renaming it gives you a backup that can be restored later if necessary.
+
+### Back up `preferences.dat`
+
+Next, locate `preferences.dat` and rename it to:
+
+```text
+preferences.dat.old
+```
+
+Your directory should now contain something similar to:
+
+```text
+3.0/
+├── Settings.old
+├── preferences.dat.old
+├── CrashReports
+├── autosave
+├── backup
+├── temp
+├── temp-critical
+└── ...
+```
+
+Now launch Affinity again.
+
+If Affinity recreates the settings files, create a **new blank document** and test the Object Tool.
+
+Testing a blank document is important because it helps you tell whether the problem is with Affinity itself or with a particular document.
+
+## Check hardware acceleration
+
+If the Object Tool still causes Affinity to freeze, check the performance settings.
+
+Open Affinity and go to:
+
+**Edit → Settings → Performance**
+
+Depending on your Affinity version and configuration, look for graphics-related options such as hardware acceleration or renderer settings.
+
+If a hardware acceleration option is available, temporarily disable it and restart Affinity.
+
+Then create a new blank document and test the Object Tool again.
+
+If the freezing stops after changing the graphics settings, the issue is probably related to the graphics renderer, GPU, or graphics driver.
+
+## Check your graphics driver
+
+Graphics-driver problems can cause instability in applications that rely heavily on GPU-accelerated rendering.
+
+To identify your graphics hardware on Windows 10:
+
+1. Press `Windows + X`.
+2. Select **Device Manager**.
+3. Expand **Display adapters**.
+4. Note the graphics hardware listed there.
+
+For example:
+
+```text
+Intel UHD Graphics
+NVIDIA GeForce
+AMD Radeon
+```
+
+Once you know your GPU model, check the manufacturer's official website for the appropriate Windows 10 driver.
+
+Avoid downloading graphics drivers from random third-party websites.
+
+## Check your Windows version
+
+To check your Windows 10 version:
+
+1. Press `Windows + R`.
+2. Type:
+
+```text
+winver
+```
+
+3. Press **Enter**.
+
+Windows will display your current version and build number.
+
+For example:
+
+```text
+Windows 10
+Version 22H2
+```
+
+## Check Windows app settings
+
+If Affinity doesn't appear in:
+
+**Control Panel → Programs and Features**
+
+check the modern Windows application settings instead.
+
+Go to:
+
+**Start → Settings → Apps → Apps & features**
+
+Search for:
+
+```text
+Affinity
+```
+
+If Affinity appears there, open its available options.
+
+Depending on the installation, Windows may provide options such as:
+
+- **Repair**
+- **Reset**
+- **Uninstall**
+
+If **Repair** is available, try that before using **Reset** or uninstalling the application.
+
+## Check Affinity crash reports
+
+If Affinity continues to freeze, check the crash-report directory.
+
+For my installation, the location is:
+
+```text
+C:\Users\<Your-Username>\.affinity\Affinity\3.0\CrashReports\
+```
+
+These reports may provide additional information about what happened when Affinity stopped responding.
+
+If you're comfortable digging into the issue further, open the most recent report and look for references to graphics drivers, rendering components, or other modules.
+
+## The checklist
+
+Before reinstalling Affinity, work through these steps:
+
+```text
+[ ] Force-close Affinity using Task Manager
+[ ] Back up Settings by renaming it to Settings.old
+[ ] Back up preferences.dat as preferences.dat.old
+[ ] Restart Affinity
+[ ] Test the Object Tool in a new blank document
+[ ] Check hardware acceleration / renderer settings
+[ ] Identify and update your graphics driver
+[ ] Check your Windows version with winver
+[ ] Check Windows Settings → Apps for Affinity
+[ ] Inspect CrashReports if the problem continues
+```
+
+## Final thoughts
+
+If the Object Tool works normally after resetting the settings, the problem was likely with Affinity's stored configuration.
+
+If the problem continues even in a completely new document, the next things to investigate are the graphics driver, GPU-related rendering, Windows compatibility, and Affinity's crash reports.
+
+Before you do a full reinstall, identify which of these areas is causing the freeze. That way you won't reinstall the application without actually dealing with the root cause.
