@@ -2,7 +2,7 @@ name: Automated Bot Task
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Adjust schedule as needed
+    - cron: "0 0 * * *" # Adjust schedule as needed
   workflow_dispatch: # Allows manual trigger from GitHub UI
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
         run: |
           git config user.name "cindyai-bot[bot]"
           git config user.email "cindyai-bot[bot]@users.noreply.github.com"
-          
+
           git add .
           git diff-index --quiet HEAD || git commit -m "chore(bot): automated update"
           git push
