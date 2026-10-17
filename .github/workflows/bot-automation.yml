@@ -2,16 +2,16 @@ name: Automated Bot Task
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Adjust schedule as needed
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   run-bot:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Generate Bot Token
         id: generate-token
         uses: actions/create-github-app-token@v1
@@ -19,9 +19,13 @@ jobs:
           app-id: ${{ secrets.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_PRIVATE_KEY }}
 
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.generate-token.token }}
+
       - name: Run Bot Script / Task
         run: |
-          # Add your script or bot tasks here
           echo "Bot activity logged at $(date)" >> bot-log.txt
 
       - name: Commit & Push as Bot
