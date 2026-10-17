@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 
+import { siteConfig } from "@config/site";
 import { getAllPosts } from "@lib/mdx";
 
-const siteUrl = "https://blog.likandokayombo.com";
+const siteUrl = siteConfig.url;
 
 /**
  * Generate sitemap for search engines

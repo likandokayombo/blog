@@ -1,5 +1,8 @@
 import Link from "next/link";
 
+import { footerLinks } from "@config/navigation";
+import { siteConfig } from "@config/site";
+
 /**
  * Icon component for external links
  * @param props - Component props
@@ -27,21 +30,6 @@ function OpenInNewIcon({ className = "" }: { className?: string }) {
 export default function Footer() {
   const year = new Date().getFullYear();
 
-  const links = [
-    { label: "Home", href: "/" },
-    { label: "Changelog", href: "/changelog" },
-    {
-      label: "Source Code",
-      href: "https://github.com/likandokayombo/blog",
-      external: true,
-    },
-    {
-      label: "Twitter",
-      href: "https://twitter.com/likandokayombo",
-      external: true,
-    },
-  ];
-
   return (
     <footer className="mt-auto w-full border-t border-gray-800 px-6 py-12 text-gray-400">
       <div className="mx-auto flex max-w-6xl flex-col md:flex-row md:justify-between">
@@ -49,7 +37,7 @@ export default function Footer() {
           <h3 className="text-lg font-bold text-white">Links</h3>
 
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
-            {links.map(({ label, href, external }) => (
+            {footerLinks.map(({ label, href, external }) => (
               <Link
                 key={label}
                 href={href}
@@ -69,7 +57,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 md:mt-0 md:self-end text-xs text-gray-500">
-          © {year}. <span className="text-gray-400">Likando Kayombo</span>
+          © {year}. <span className="text-gray-400">{siteConfig.author.name}</span>
         </div>
       </div>
     </footer>

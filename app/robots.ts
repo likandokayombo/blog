@@ -1,11 +1,13 @@
 import type { MetadataRoute } from "next";
 
+import { siteConfig } from "@config/site";
+
 /**
  * Generate robots.txt metadata for search engines
  * @returns Robots metadata configuration
  */
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://blog.likandokayombo.com";
+  const baseUrl = siteConfig.url;
   return {
     rules: [
       {
