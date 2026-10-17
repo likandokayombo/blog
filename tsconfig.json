@@ -11,6 +11,7 @@
       "@/*": ["./*"],
       "@app/*": ["app/*"],
       "@components/*": ["app/components/*"],
+      "@config/*": ["config/*"],
       "@features/*": ["app/features/*"],
       "@lib/*": ["lib/*"]
     },

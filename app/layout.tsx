@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 
 import Footer from "@components/footer";
 import Navbar from "@components/navbar";
+import { siteConfig } from "@config/site";
 
 export const instrumentSerif = localFont({
   src: "./fonts/InstrumentSerif-Regular.ttf",
@@ -24,15 +25,15 @@ export const departureMono = localFont({
   display: "swap",
 });
 export const metadata: Metadata = {
-  metadataBase: new URL("https://blog.likandokayombo.com"),
-  keywords: ["Raycast on windows", "UI/UX", "Frontend development", "Likando Kayombo Personal Blog"],
-  title: "Likando Kayombo Personal Blog",
-  description: "I explore posts and stories about web development, UI design, and other topics i find interesting",
+  metadataBase: new URL(siteConfig.url),
+  keywords: [...siteConfig.keywords],
+  title: siteConfig.title,
+  description: siteConfig.description,
 
   openGraph: {
-    title: "Likando Kayombo Personal Blog",
-    description: "I explore posts and stories about web development, UI design, and other topics I find interesting",
-    images: ["/opengraph-image.png"],
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [siteConfig.openGraphImage],
   },
   icons: {
     icon: [
