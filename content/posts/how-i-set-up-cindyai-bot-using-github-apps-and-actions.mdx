@@ -1,0 +1,88 @@
+---
+title: "How I Set Up @cindyai-bot using GitHub Apps and Actions"
+date: "2026-10-17"
+description: "A step-by-step walkthrough on configuring a custom automated GitHub App bot that commits updates and appears on your blog repository's contributor list."
+---
+
+Automating repository tasks like dependency management, log updating, or content syndication often requires an automated bot account. Instead of using standard personal access tokens, creating a custom **GitHub App** allows your automation to commit code under its own distinct name and avatar—showing up cleanly as `cindyai-bot[bot]` in your commit history and contributor graphs.
+
+Here is the step-by-step guide on how we configured and deployed **`cindyai-bot`** for this repository.
+
+## 1. Creating the GitHub App
+
+First, I registered a new GitHub App to give our bot its identity:
+
+1. Navigate to **GitHub Profile Settings** → **Developer settings** → **GitHub Apps**.
+2. Click **New GitHub App**.
+3. Set the **GitHub App name** to `cindyai-bot`.
+   > **Note:** GitHub reserves names matching existing user handles. App names must also exclude special characters like `@`.
+4. Enter your blog URL under **Homepage URL**.
+5. Uncheck **Active** under the *Webhook* section (since we are using pull-based workflows).
+6. Under **Repository permissions**, grant the following access:
+   - **Contents:** *Read & write*
+   - **Workflows:** *Read & write*
+7. Click **Create GitHub App**.
+
+## 2. Generating Credentials & Installing the App
+
+Once created, we gathered the authentication credentials:
+
+1. Copy the **App ID** displayed at the top of the app page.
+2. Scroll down to **Private keys** and click **Generate a private key**. A `.pem` file containing the RSA key will download automatically.
+3. In the left menu of the app page, click **Install App**, select your account/organization, and grant access to your **blog** repository.
+
+## 3. Configuring Repository Secrets
+
+To allow GitHub Actions to securely authenticate as `cindyai-bot`, we added the credentials to our repository's secrets:
+
+1. Open your repository on GitHub → **Settings** → **Secrets and variables** → **Actions**.
+2. Click **New repository secret** and add:
+   - **`BOT_APP_ID`**: Paste your numeric GitHub App ID.
+   - **`BOT_PRIVATE_KEY`**: Paste the full contents of the downloaded `.pem` file (including `-----BEGIN RSA PRIVATE KEY-----` and `-----END RSA PRIVATE KEY-----`).
+
+## 4. Setting Up the GitHub Actions Workflow
+
+We created a workflow file at `.github/workflows/bot-automation.yml` in the repository.
+
+This workflow uses the official `actions/create-github-app-token` action to exchange the App credentials for an installation access token, then configures Git to commit under the `cindyai-bot[bot]` identity:
+
+```yaml
+name: Automated Bot Task
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Bot Token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Bot Script / Task
+        run: |
+          echo "Bot activity logged at $(date)" >> bot-log.txt
+
+      - name: Commit & Push as Bot
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+        run: |
+          git config user.name "cindyai-bot[bot]"
+          git config user.email "cindyai-bot[bot]@users.noreply.github.com"
+
+          git add .
+          git diff-index --quiet HEAD || git commit -m "chore(bot): automated update"
+          git push
+```
