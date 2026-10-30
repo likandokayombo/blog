@@ -10,9 +10,9 @@
     "paths": {
       "@/*": ["./*"],
       "@app/*": ["app/*"],
-      "@components/*": ["app/components/*"],
+      "@components/*": ["app/core/components/*"],
       "@config/*": ["config/*"],
-      "@features/*": ["app/features/*"],
+      "@features/*": ["app/core/features/*"],
       "@lib/*": ["lib/*"]
     },
     "resolveJsonModule": true,
