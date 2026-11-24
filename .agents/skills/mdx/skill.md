@@ -25,11 +25,11 @@ Inspect:
 
 ## Rules
 
-- Follow existing frontmatter conventions.
-- Reuse existing MDX components.
-- Do not introduce a new component for something already supported.
-- Preserve Markdown semantics.
-- Use valid MDX syntax.
+- Follow existing frontmatter conventions: posts use `title`, `date` (ISO string), and `description` fields
+- Reuse existing MDX components from `lib/mdx.components.tsx` (h1-renders-null, h2/h3/h4 with color tag support, a, img, code, blockquote)
+- Do not introduce a new component for something already supported (e.g., use existing h2/h3/h4 with color tags instead of creating new heading components)
+- Preserve Markdown semantics and valid MDX syntax
+- Images should use the `img` component from `lib/mdx.components.tsx` which wraps `MDXImage` with proper alt, width, and height
 
 ## Headings
 
@@ -37,9 +37,11 @@ Maintain a logical heading hierarchy.
 
 Avoid skipping heading levels without a reason.
 
+Note: h1 component renders null to prevent duplicate title rendering; use h2-h6 for section headings.
+
 ## Code Blocks
 
-Follow the existing syntax-highlighting implementation.
+Follow the existing syntax-highlighting implementation using `CodeBlock` component from `lib/code-block.tsx` with Prism.js dark theme.
 
 Do not introduce another syntax-highlighting library unless explicitly requested.
 
@@ -47,15 +49,16 @@ Do not introduce another syntax-highlighting library unless explicitly requested
 
 Follow the existing image component and image configuration.
 
+The project uses `MDXImage` from `lib/mdx-image.tsx` for optimized image rendering; wrap with the `img` component from MDX components.
+
 Do not bypass the project's image handling without a reason.
 
 ## Debugging
 
 If MDX fails to compile:
 
-1. Check the syntax.
-2. Check imported components.
-3. Check JSX nesting.
-4. Check frontmatter.
-5. Compare against working MDX posts.
-6. Only then modify the MDX infrastructure.
+1. Check the syntax and frontmatter (title, date, description).
+2. Check imported components and their props.
+3. Check JSX nesting and MDX component usage.
+4. Compare against working MDX posts in `content/posts/`.
+5. Only then modify the MDX infrastructure.
