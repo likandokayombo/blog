@@ -16,13 +16,13 @@ Inspect existing posts in:
 
 Determine:
 
-- Frontmatter format
-- File naming convention
-- Heading structure
-- Writing style
-- Typical article length
-- Use of MDX components
-- Code block conventions
+- Frontmatter format: each post has `title`, `date`, and `description` fields
+- File naming convention: kebab-case slugs with `.mdx` extension (e.g., `how-to-pull-the-latest-commits-from-the-main-repository-into-your-fork.mdx`)
+- Heading structure: posts use proper heading hierarchy (h1-h6), typically starting with an h1 or h2
+- Writing style: technical posts should be clear, practical, conversational, and accurate
+- Typical article length: medium-length technical posts (1-3 pages of content)
+- Use of MDX components: project uses custom MDX components from `lib/mdx.components.tsx` (h1-h4 with color tags, a, img, code, blockquote)
+- Code block conventions: fenced code blocks with language labels, syntax highlighting via Prism.js dark theme
 
 ## Writing Style
 

@@ -48,11 +48,11 @@ Check for:
 
 Check for:
 
-- `any`
-- Unsafe casts
-- Incorrect nullable handling
-- Missing types
-- Suppressed errors
+- `any` — avoid unless there is a strong reason; prefer explicit types
+- Unsafe casts — prefer proper type assertions or overloads
+- Incorrect nullable handling — check optional types are handled correctly
+- Missing types — ensure public APIs and reusable utilities have explicit types
+- Suppressed errors — do not silence TypeScript errors with `@ts-ignore` unless absolutely necessary; fix the underlying type problem
 
 ## UI Review
 
