@@ -298,7 +298,7 @@ export default function Terminal({
 
         setOutput(prev =>
           prev.concat(
-            `Found ${matches.length} entry${matches.length > 1 ? "s" : ""}:`,
+            `Found ${matches.length} ${matches.length > 1 ? "entries" : "entry"}:`,
             "",
             ...matches.map(c => highlight(c, keyword)),
           ),
