@@ -83,6 +83,7 @@ describe("hero", () => {
 
     expect(h1).toHaveTextContent("Learning is");
     expect(h1).toHaveTextContent("a process");
+    expect(h1.querySelector("br")).toBeInTheDocument();
   });
 
   it("renders the paragraph with web development mention", () => {
